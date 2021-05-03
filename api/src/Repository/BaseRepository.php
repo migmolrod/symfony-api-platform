@@ -47,7 +47,6 @@ abstract class BaseRepository
     }
 
     /**
-     * @param object $entity
      * @throws ORMException
      * @throws OptimisticLockException
      */
@@ -58,7 +57,6 @@ abstract class BaseRepository
     }
 
     /**
-     * @param object $entity
      * @throws ORMException
      * @throws OptimisticLockException
      */
