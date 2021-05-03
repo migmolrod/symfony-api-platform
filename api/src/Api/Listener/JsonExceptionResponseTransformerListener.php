@@ -15,7 +15,7 @@ class JsonExceptionResponseTransformerListener
         if ($exception instanceof HttpExceptionInterface) {
             $data = [
                 'class' => \get_class($exception),
-                'code' => $exception->getCode(),
+                'code' => $exception->getStatusCode(),
                 'message' => $exception->getMessage(),
             ];
 
