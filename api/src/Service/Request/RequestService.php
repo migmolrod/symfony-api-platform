@@ -9,6 +9,7 @@ class RequestService
 {
     /**
      * @return mixed|null
+     *
      * @throws \JsonException
      */
     public static function getField(Request $request, string $fieldName, bool $isRequired = true, bool $isArray = false)
