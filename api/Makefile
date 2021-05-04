@@ -48,3 +48,6 @@ be-ssh: ## SSHs into the backend container :backend command
 
 be-php-cs: ## Runs code style CS-Fixer with Symfony rules :backend command
 	U_ID=${UID} docker exec --user ${UID} -it ${DOCKER_BE} php-cs-fixer fix src --rules=@Symfony
+
+generate-ssh-keys: ## Generates SSH for the JWT library
+	U_ID=${UID} docker exec --user ${UID} -it ${DOCKER_BE} bin/console lexik:jwt:generate-keypair --skip-if-exists
