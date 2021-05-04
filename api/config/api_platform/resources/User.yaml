@@ -8,9 +8,9 @@ App\Entity\User:
             path: /users/register
             controller: App\Api\Action\User\Register
             denormalization_context:
-                groups: [user_write]
+                groups: [user_post]
             openapi_context:
-                summary: Register a new user
+                summary: Register a new User
     itemOperations:
         get:
             method: GET
