@@ -8,3 +8,7 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
+
+###> other files: cache and non-dist ###
+docker-compose.yaml
+###< other files: cache and non-dist ###
