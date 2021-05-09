@@ -7,13 +7,18 @@ security:
         users_in_memory: { memory: null }
 
     firewalls:
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
+        register:
+            pattern: ^/api/v1/users/register
+            methods: [POST]
             security: false
-        main:
-            anonymous: true
-            lazy: true
-            provider: users_in_memory
+        resend_activation_email:
+            pattern: ^/api/v1/users/resend-activation-email
+            methods: [POST]
+            security: false
+        docs:
+            pattern: /api/v1/docs
+            methods: [GET]
+            security: false
 
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
