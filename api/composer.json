@@ -86,6 +86,7 @@
     "require-dev": {
         "hautelook/alice-bundle": "^2.9",
         "liip/test-fixtures-bundle": "^1.0.0",
+        "phpunit/phpunit": "^9.5",
         "symfony/browser-kit": "5.1.*",
         "symfony/maker-bundle": "^1.30"
     }
