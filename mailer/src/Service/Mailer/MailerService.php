@@ -4,6 +4,7 @@ namespace Mailer\Service\Mailer;
 
 use Mailer\Templating\TwigTemplate;
 use Psr\Log\LoggerInterface;
+use function sprintf;
 use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
@@ -11,7 +12,6 @@ use Twig\Environment;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
-use function sprintf;
 
 class MailerService
 {
@@ -26,7 +26,6 @@ class MailerService
 
     public function __construct(MailerInterface $mailer, Environment $environment, LoggerInterface $logger, string $mailerDefaultSender)
     {
-
         $this->mailer = $mailer;
         $this->environment = $environment;
         $this->logger = $logger;

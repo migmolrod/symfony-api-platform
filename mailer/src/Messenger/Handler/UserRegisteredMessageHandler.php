@@ -6,11 +6,11 @@ use Mailer\Messenger\Message\UserRegisteredMessage;
 use Mailer\Service\Mailer\ClientRoute;
 use Mailer\Service\Mailer\MailerService;
 use Mailer\Templating\TwigTemplate;
+use function sprintf;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
-use function sprintf;
 
 class UserRegisteredMessageHandler implements MessageHandlerInterface
 {

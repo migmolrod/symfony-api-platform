@@ -10,5 +10,6 @@
 ###< symfony/framework-bundle ###
 
 ###> other files: cache and non-dist ###
+.php_cs.cache
 docker-compose.yaml
 ###< other files: cache and non-dist ###
