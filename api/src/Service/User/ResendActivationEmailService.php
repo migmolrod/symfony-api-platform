@@ -6,11 +6,8 @@ use App\Exception\User\UserAlreadyActiveException;
 use App\Messenger\Message\UserRegisteredMessage;
 use App\Messenger\RoutingKey;
 use App\Repository\UserRepository;
-use App\Service\Request\RequestService;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
-use JsonException;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Messenger\Bridge\Amqp\Transport\AmqpStamp;
 use Symfony\Component\Messenger\MessageBusInterface;
 
@@ -28,11 +25,9 @@ class ResendActivationEmailService
     /**
      * @throws ORMException
      * @throws OptimisticLockException
-     * @throws JsonException
      */
-    public function resend(Request $request): void
+    public function resend(string $email): void
     {
-        $email = RequestService::getField($request, 'email');
         $user = $this->userRepository->findOneByEmailOrFail($email);
 
         if ($user->isActive()) {
