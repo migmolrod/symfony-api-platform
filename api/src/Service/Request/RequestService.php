@@ -2,6 +2,7 @@
 
 namespace App\Service\Request;
 
+use JsonException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
@@ -10,7 +11,7 @@ class RequestService
     /**
      * @return mixed|null
      *
-     * @throws \JsonException
+     * @throws JsonException
      */
     public static function getField(Request $request, string $fieldName, bool $isRequired = true, bool $isArray = false)
     {

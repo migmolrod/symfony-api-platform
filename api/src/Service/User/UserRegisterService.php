@@ -9,6 +9,7 @@ use App\Messenger\RoutingKey;
 use App\Repository\UserRepository;
 use App\Service\Password\EncoderService;
 use App\Service\Request\RequestService;
+use JsonException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Messenger\Bridge\Amqp\Transport\AmqpStamp;
 use Symfony\Component\Messenger\MessageBusInterface;
@@ -27,7 +28,7 @@ class UserRegisterService
     }
 
     /**
-     * @throws \JsonException
+     * @throws JsonException
      */
     public function create(Request $request): User
     {

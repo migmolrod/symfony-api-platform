@@ -151,4 +151,9 @@ class User implements UserInterface
     {
         $this->token = \sha1(\uniqid('SYM', true));
     }
+
+    public function refreshResetPasswordToken(): void
+    {
+        $this->resetPasswordToken = \sha1(\uniqid('SYM', true));
+    }
 }

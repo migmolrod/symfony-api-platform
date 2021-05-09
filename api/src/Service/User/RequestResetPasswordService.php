@@ -2,8 +2,7 @@
 
 namespace App\Service\User;
 
-use App\Exception\User\UserAlreadyActiveException;
-use App\Messenger\Message\UserRegisteredMessage;
+use App\Messenger\Message\RequestResetPasswordMessage;
 use App\Messenger\RoutingKey;
 use App\Repository\UserRepository;
 use App\Service\Request\RequestService;
@@ -14,8 +13,9 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Messenger\Bridge\Amqp\Transport\AmqpStamp;
 use Symfony\Component\Messenger\MessageBusInterface;
 
-class ResendActivationEmailService
+class RequestResetPasswordService
 {
+
     private UserRepository $userRepository;
     private MessageBusInterface $messageBus;
 
@@ -26,27 +26,25 @@ class ResendActivationEmailService
     }
 
     /**
-     * @param Request $request
      * @throws ORMException
      * @throws OptimisticLockException
      * @throws JsonException
      */
-    public function resend(Request $request): void
+    public function send(Request $request): void
     {
         $email = RequestService::getField($request, 'email');
         $user = $this->userRepository->findOneByEmailOrFail($email);
+        $user->refreshResetPasswordToken();
 
-        if ($user->isActive()) {
-            throw UserAlreadyActiveException::fromEmail($email);
-        }
-
-        $user->refreshToken();
         $this->userRepository->save($user);
 
         $this->messageBus->dispatch(
-            new UserRegisteredMessage($user->getId(), $user->getName(), $user->getEmail(), $user->getToken()),
-            [new AmqpStamp(RoutingKey::USER_QUEUE)]
+            new RequestResetPasswordMessage(
+                $user->getId(),
+                $user->getEmail(),
+                $user->getResetPasswordToken()
+            ),
+            [ new AmqpStamp(RoutingKey::USER_QUEUE)]
         );
-
     }
 }
