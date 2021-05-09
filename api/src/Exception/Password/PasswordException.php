@@ -3,6 +3,7 @@
 namespace App\Exception\Password;
 
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use function sprintf;
 
 class PasswordException extends BadRequestHttpException
 {
@@ -11,11 +12,11 @@ class PasswordException extends BadRequestHttpException
 
     public static function invalidLength(int $minimumLength): self
     {
-        throw new self(\sprintf(self::MIN_LENGTH, $minimumLength));
+        throw new self(sprintf(self::MIN_LENGTH, $minimumLength));
     }
 
     public static function oldPasswordDoesNotMatch(): self
     {
-        throw new self(\sprintf(self::OLD_PASSWORD_DOES_NOT_MATCH));
+        throw new self(self::OLD_PASSWORD_DOES_NOT_MATCH);
     }
 }
