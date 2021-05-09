@@ -161,3 +161,29 @@ App\Entity\User:
                                     token:
                                         type: string
                                         required: true
+        reset_password:
+            method: PUT
+            path: /users/{id}/reset-password
+            controller: App\Api\Action\User\ResetPassword
+            deserialize: false
+            openapi_context:
+                summary: Resets user password
+                requestBody:
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    resetPasswordToken:
+                                        type: string
+                                        required: true
+                                    password:
+                                        type: string
+                                        required: true
+                responses:
+                    200:
+                        description: OK
+                        content:
+                            application/ld+json:
+                                schema:
+                                    $ref: '#/components/schemas/User:jsonld-user_read'
