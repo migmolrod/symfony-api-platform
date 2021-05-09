@@ -2,6 +2,7 @@
 
 namespace App\Api\Action\User;
 
+use App\Service\Request\RequestService;
 use App\Service\User\RequestResetPasswordService;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
@@ -28,7 +29,9 @@ class RequestResetPassword
      */
     public function __invoke(Request $request): JsonResponse
     {
-        $this->requestResetPasswordService->send($request);
+        $this->requestResetPasswordService->send(
+            RequestService::getField($request, 'email'),
+        );
 
         return new JsonResponse(['message' => 'Request reset password email sent']);
     }
