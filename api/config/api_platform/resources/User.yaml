@@ -15,6 +15,7 @@ App\Entity\User:
             method: POST
             path: /users/resend-activation-email
             controller: App\Api\Action\User\ResendActivationEmail
+            deserialize: false
             openapi_context:
                 summary: Resends activation email for inactive user
                 requestBody:
