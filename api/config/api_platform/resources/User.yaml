@@ -35,10 +35,26 @@ App\Entity\User:
                                 schema:
                                     type: object
                                     properties:
-                                        code:
-                                            type: number
                                         message:
                                             type: string
     itemOperations:
         get:
             method: GET
+        activate:
+            method: PUT
+            path: /users/{id}/activate
+            controller: App\Api\Action\User\ActivateAccount
+            deserialize: false
+            denormalization_contest:
+                groups: [user_activate]
+            openapi_context:
+                summary: Activates user
+                requestBody:
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    token:
+                                        type: string
+                                        required: true

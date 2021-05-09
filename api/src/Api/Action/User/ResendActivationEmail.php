@@ -20,6 +20,6 @@ class ResendActivationEmail
     {
         $this->resendActivationEmailService->resend($request);
 
-        return new JsonResponse(['code' => 200, 'message' => 'Activation email sent']);
+        return new JsonResponse(['message' => 'Activation email sent']);
     }
 }
