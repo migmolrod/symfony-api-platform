@@ -7,8 +7,10 @@ App\Entity\User:
             method: POST
             path: /users/register
             controller: App\Api\Action\User\Register
+            normalization_context:
+                groups: [user_read]
             denormalization_context:
-                groups: [user_post]
+                groups: [user_write]
             openapi_context:
                 summary: Register a new User
     itemOperations:

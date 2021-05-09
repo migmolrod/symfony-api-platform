@@ -31,22 +31,22 @@ build: ## Rebuilds all containers
 	U_ID=${UID} docker-compose build
 
 prepare: ## Runs backend commands
-	${MAKE} be-composer
+	${MAKE} composer
 
 # Backend commands
-be-composer: ## Installs composer dependencies :backend command
+composer: ## Installs composer dependencies :backend command
 	U_ID=${UID} docker exec --user ${UID} -it ${DOCKER_BE} composer install --no-scripts --no-interaction --optimize-autoloader
 
-be-migrations: ## Runs database migrations :backend command
+migrations: ## Runs database migrations :backend command
 	U_ID=${UID} docker exec --user ${UID} -it ${DOCKER_BE} bin/console doctrine:migrations:migrate -n
 
-be-logs: ## Tails the Symfony dev log :backend command
+logs: ## Tails the Symfony dev log :backend command
 	U_ID=${UID} docker exec --user ${UID} -it ${DOCKER_BE} tail -f var/log/dev.log
 
-be-ssh: ## SSHs into the backend container :backend command
+ssh: ## SSHs into the backend container :backend command
 	U_ID=${UID} docker exec --user ${UID} -it ${DOCKER_BE} bash
 
-be-php-cs: ## Runs code style CS-Fixer with Symfony rules :backend command
+phpcs: ## Runs code style CS-Fixer with Symfony rules :backend command
 	U_ID=${UID} docker exec --user ${UID} -it ${DOCKER_BE} php-cs-fixer fix src --rules=@Symfony
 
 generate-ssh-keys: ## Generates SSH for the JWT library
