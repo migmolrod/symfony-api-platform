@@ -23,7 +23,7 @@ class TestBase extends WebTestCase
     protected static ?KernelBrowser $client = null;
     protected static ?KernelBrowser $peter = null;
     protected static ?KernelBrowser $brian = null;
-    protected static ?KernelBrowser $mary = null;
+    protected static ?KernelBrowser $roger = null;
 
     protected function setUp(): void
     {
@@ -33,6 +33,19 @@ class TestBase extends WebTestCase
                 'CONTENT_TYPE' => 'application/json',
                 'HTTP_ACCEPT' => 'application/ld+json',
             ]);
+        }
+
+        if (null === self::$peter) {
+            self::$peter = clone self::$client;
+            $this->createAuthenticatedUser(self::$peter, 'peter@api.com');
+        }
+        if (null === self::$brian) {
+            self::$brian = clone self::$client;
+            $this->createAuthenticatedUser(self::$brian, 'brian@api.com');
+        }
+        if (null === self::$roger) {
+            self::$roger = clone self::$client;
+            $this->createAuthenticatedUser(self::$roger, 'roger@api.com');
         }
     }
 
