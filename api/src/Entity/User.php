@@ -25,7 +25,7 @@ class User implements UserInterface
         $this->setEmail($email);
         $this->password = null;
         $this->avatar = null;
-        $this->token = \sha1(\uniqid('SYM', true));
+        $this->refreshToken();
         $this->resetPasswordToken = null;
         $this->active = false;
         $this->createdAt = new \DateTime();
@@ -145,5 +145,10 @@ class User implements UserInterface
 
     public function eraseCredentials(): void
     {
+    }
+
+    public function refreshToken(): void
+    {
+        $this->token = \sha1(\uniqid('SYM', true));
     }
 }

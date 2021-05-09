@@ -8,9 +8,37 @@ App\Entity\User:
             path: /users/register
             controller: App\Api\Action\User\Register
             denormalization_context:
-                groups: [user_post]
+                groups: [user_write]
             openapi_context:
                 summary: Register a new User
+        resend_activation_email:
+            method: POST
+            path: /users/resend-activation-email
+            controller: App\Api\Action\User\ResendActivationEmail
+            deserialize: false
+            openapi_context:
+                summary: Resends activation email for inactive user
+                requestBody:
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    email:
+                                        type: string
+                                        required: true
+                responses:
+                    200:
+                        description: OK
+                        content:
+                            application/json:
+                                schema:
+                                    type: object
+                                    properties:
+                                        code:
+                                            type: number
+                                        message:
+                                            type: string
     itemOperations:
         get:
             method: GET
