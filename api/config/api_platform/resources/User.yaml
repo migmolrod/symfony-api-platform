@@ -6,7 +6,7 @@ App\Entity\User:
         register:
             method: POST
             path: /users/register
-            controller: App\Api\Action\User\Register
+            controller: App\Api\Action\User\UserRegister
             denormalization_context:
                 groups: [user_write]
             openapi_context:
