@@ -14,7 +14,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ChangePasswordService
 {
-
     private UserRepository $userRepository;
     private EncoderService $encoderService;
 

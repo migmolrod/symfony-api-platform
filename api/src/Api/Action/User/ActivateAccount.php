@@ -12,7 +12,6 @@ class ActivateAccount
 
     public function __construct(ActivateAccountService $activateAccountService)
     {
-
         $this->activateAccountService = $activateAccountService;
     }
 

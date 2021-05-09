@@ -12,7 +12,6 @@ class ResendActivationEmail
 
     public function __construct(ResendActivationEmailService $resendActivationEmailService)
     {
-
         $this->resendActivationEmailService = $resendActivationEmailService;
     }
 

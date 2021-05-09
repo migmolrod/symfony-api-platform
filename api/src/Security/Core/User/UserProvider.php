@@ -7,13 +7,13 @@ use App\Exception\User\UserNotFoundException;
 use App\Repository\UserRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
+use function get_class;
+use function sprintf;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
-use function get_class;
-use function sprintf;
 
 class UserProvider implements UserProviderInterface, PasswordUpgraderInterface
 {
@@ -23,7 +23,6 @@ class UserProvider implements UserProviderInterface, PasswordUpgraderInterface
 
     public function __construct(UserRepository $userRepository)
     {
-
         $this->userRepository = $userRepository;
     }
 

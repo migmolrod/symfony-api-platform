@@ -15,7 +15,6 @@ use Symfony\Component\Messenger\MessageBusInterface;
 
 class RequestResetPasswordService
 {
-
     private UserRepository $userRepository;
     private MessageBusInterface $messageBus;
 
@@ -44,7 +43,7 @@ class RequestResetPasswordService
                 $user->getEmail(),
                 $user->getResetPasswordToken()
             ),
-            [ new AmqpStamp(RoutingKey::USER_QUEUE)]
+            [new AmqpStamp(RoutingKey::USER_QUEUE)]
         );
     }
 }

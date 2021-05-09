@@ -26,7 +26,7 @@ class ActivateAccountService
      */
     public function activate(Request $request, string $id): User
     {
-        $token = RequestService::getField($request,'token');
+        $token = RequestService::getField($request, 'token');
         $user = $this->userRepository->findOneByIdAndTokenOrFail($id, $token);
 
         $user->setActive(true);

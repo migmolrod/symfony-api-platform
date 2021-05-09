@@ -15,7 +15,6 @@ class ResetPassword
 
     public function __construct(ResetPasswordService $resetPasswordService)
     {
-
         $this->resetPasswordService = $resetPasswordService;
     }
 

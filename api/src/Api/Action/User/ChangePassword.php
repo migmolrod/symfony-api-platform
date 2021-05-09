@@ -8,7 +8,6 @@ use Symfony\Component\HttpFoundation\Request;
 
 class ChangePassword
 {
-
     private ChangePasswordService $changePasswordService;
 
     public function __construct(ChangePasswordService $changePasswordService)

@@ -18,7 +18,6 @@ class ResetPasswordService
 
     public function __construct(UserRepository $userRepository, EncoderService $encoderService)
     {
-
         $this->userRepository = $userRepository;
         $this->encoderService = $encoderService;
     }

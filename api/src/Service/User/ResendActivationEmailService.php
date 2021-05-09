@@ -26,7 +26,6 @@ class ResendActivationEmailService
     }
 
     /**
-     * @param Request $request
      * @throws ORMException
      * @throws OptimisticLockException
      * @throws JsonException
@@ -47,6 +46,5 @@ class ResendActivationEmailService
             new UserRegisteredMessage($user->getId(), $user->getName(), $user->getEmail(), $user->getToken()),
             [new AmqpStamp(RoutingKey::USER_QUEUE)]
         );
-
     }
 }
