@@ -28,11 +28,9 @@ class ResendActivationEmailService
     /**
      * @throws ORMException
      * @throws OptimisticLockException
-     * @throws JsonException
      */
-    public function resend(Request $request): void
+    public function resend(string $email): void
     {
-        $email = RequestService::getField($request, 'email');
         $user = $this->userRepository->findOneByEmailOrFail($email);
 
         if ($user->isActive()) {
