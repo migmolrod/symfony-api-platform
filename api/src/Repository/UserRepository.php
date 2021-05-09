@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Entity\User;
-use App\Exception\User\UserAlreadyActiveException;
 use App\Exception\User\UserNotFoundException;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
