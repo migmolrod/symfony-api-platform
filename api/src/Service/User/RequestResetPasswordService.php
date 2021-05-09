@@ -5,11 +5,8 @@ namespace App\Service\User;
 use App\Messenger\Message\RequestResetPasswordMessage;
 use App\Messenger\RoutingKey;
 use App\Repository\UserRepository;
-use App\Service\Request\RequestService;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
-use JsonException;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Messenger\Bridge\Amqp\Transport\AmqpStamp;
 use Symfony\Component\Messenger\MessageBusInterface;
 
