@@ -13,10 +13,10 @@ App\Entity\User:
             name: Brian
             email: brian@api.com
         password: <{testing_password_hash}>
-        active: false
+        active: true
     User-2:
         __construct:
-            name: Mary
-            email: mary@api.com
+            name: Roger
+            email: roger@api.com
         password: <{testing_password_hash}>
-        active: true
+        active: false
