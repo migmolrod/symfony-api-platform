@@ -31,6 +31,7 @@ class RequestResetPasswordActionTest extends UserTestBase
 
         $this->assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
     }
+
     /**
      * @throws JsonException
      */
