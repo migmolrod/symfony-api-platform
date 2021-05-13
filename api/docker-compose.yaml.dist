@@ -43,7 +43,10 @@ services:
     # Database MYSQL
     symfony-api-platform-db:
         container_name: symfony-api-platform-db
-        image: mysql:8
+        build:
+            context: ./docker/database
+            dockerfile: database.dockerfile
+
         ports:
             - 33060:3306
         environment:

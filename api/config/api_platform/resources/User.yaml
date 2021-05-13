@@ -6,7 +6,7 @@ App\Entity\User:
         register:
             method: POST
             path: /users/register
-            controller: App\Api\Action\User\Register
+            controller: App\Api\Action\User\UserRegister
             denormalization_context:
                 groups: [user_write]
             openapi_context:
@@ -120,25 +120,6 @@ App\Entity\User:
                                     properties:
                                         User:
                                             type: object
-        change_password:
-            method: POST
-            path: /users/change-password
-            controller: App\Api\Action\User\ChangePassword
-            deserialize: false
-            openapi_context:
-                summary: Changes user password
-                requestBody:
-                    content:
-                        application/json:
-                            schema:
-                                type: object
-                                properties:
-                                    oldPassword:
-                                        type: string
-                                        required: true
-                                    newPassword:
-                                        type: string
-                                        required: true
 
     itemOperations:
         get:
@@ -159,5 +140,50 @@ App\Entity\User:
                                 type: object
                                 properties:
                                     token:
+                                        type: string
+                                        required: true
+        reset_password:
+            method: PUT
+            path: /users/{id}/reset-password
+            controller: App\Api\Action\User\ResetPassword
+            deserialize: false
+            openapi_context:
+                summary: Resets user password
+                requestBody:
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    resetPasswordToken:
+                                        type: string
+                                        required: true
+                                    password:
+                                        type: string
+                                        required: true
+                responses:
+                    200:
+                        description: OK
+                        content:
+                            application/ld+json:
+                                schema:
+                                    $ref: '#/components/schemas/User:jsonld-user_read'
+        change_password:
+            method: PUT
+            path: /users/{id}/change-password
+            controller: App\Api\Action\User\ChangePassword
+            deserialize: false
+            openapi_context:
+                summary: Changes user password
+                requestBody:
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    oldPassword:
+                                        type: string
+                                        required: true
+                                    newPassword:
                                         type: string
                                         required: true

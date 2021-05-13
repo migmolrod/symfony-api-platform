@@ -24,3 +24,8 @@
 docker-compose.yaml
 phpunit.xml
 ###< other files: cache and non-dist ###
+
+###> phpunit/phpunit ###
+/phpunit.xml
+.phpunit.result.cache
+###< phpunit/phpunit ###
