@@ -2,10 +2,10 @@
 
 namespace App\Tests\Functional\User;
 
-use JsonException;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use function json_encode;
+use JsonException;
 use function sprintf;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class RequestResetPasswordActionTest extends UserTestBase
 {

@@ -3,13 +3,10 @@
 namespace App\Tests\Unit\Service\User;
 
 use App\Entity\User;
-use App\Exception\Password\PasswordException;
 use App\Exception\User\UserNotFoundException;
 use App\Service\User\ResetPasswordService;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Uid\Uuid;
 
 class ResetPasswordServiceTest extends UserServiceTestBase
 {

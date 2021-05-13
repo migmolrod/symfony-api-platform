@@ -4,7 +4,6 @@ namespace App\Tests\Unit\Service\User;
 
 use App\Entity\User;
 use App\Exception\User\UserAlreadyActiveException;
-use App\Messenger\Message\UserRegisteredMessage;
 use App\Service\User\RequestResetPasswordService;
 use App\Service\User\ResendActivationEmailService;
 use Doctrine\ORM\OptimisticLockException;

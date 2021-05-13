@@ -2,10 +2,10 @@
 
 namespace App\Tests\Functional\User;
 
-use JsonException;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use function json_encode;
+use JsonException;
 use function sprintf;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ResendActivationEmailActionTest extends UserTestBase
 {
@@ -71,5 +71,4 @@ class ResendActivationEmailActionTest extends UserTestBase
 
         $this->assertEquals(JsonResponse::HTTP_NOT_FOUND, $response->getStatusCode());
     }
-
 }

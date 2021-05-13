@@ -2,8 +2,8 @@
 
 namespace App\Exception\Password;
 
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use function sprintf;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class PasswordException extends BadRequestHttpException
 {

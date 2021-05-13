@@ -2,12 +2,12 @@
 
 namespace App\Tests\Functional\User;
 
+use function json_encode;
 use JsonException;
 use Lexik\Bundle\JWTAuthenticationBundle\Response\JWTAuthenticationFailureResponse;
 use Lexik\Bundle\JWTAuthenticationBundle\Response\JWTAuthenticationSuccessResponse;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use function json_encode;
 use function sprintf;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class LoginActionTest extends UserTestBase
 {

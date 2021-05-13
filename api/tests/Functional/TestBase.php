@@ -2,18 +2,18 @@
 
 namespace App\Tests\Functional;
 
+use App\Repository\UserRepository;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Exception;
 use Hautelook\AliceBundle\PhpUnit\RecreateDatabaseTrait;
+use function json_decode;
 use JsonException;
+use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Liip\TestFixturesBundle\Test\FixturesTrait;
+use function sprintf;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use App\Repository\UserRepository;
-use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
-use function json_decode;
-use function sprintf;
 
 class TestBase extends WebTestCase
 {

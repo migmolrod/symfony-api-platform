@@ -8,8 +8,6 @@ use App\Exception\User\UserAlreadyExistsException;
 use App\Messenger\Message\UserRegisteredMessage;
 use App\Service\User\UserRegisterService;
 use Doctrine\ORM\ORMException;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use Symfony\Component\HttpKernel\Exception\ConflictHttpException;
 use Symfony\Component\Messenger\Envelope;
 
 class UserRegisterServiceTest extends UserServiceTestBase
@@ -82,5 +80,4 @@ class UserRegisterServiceTest extends UserServiceTestBase
 
         $this->service->create($name, $email, $password);
     }
-
 }
