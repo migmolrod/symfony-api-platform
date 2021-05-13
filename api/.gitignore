@@ -14,3 +14,13 @@
 .phpunit.result.cache
 /phpunit.xml
 ###< symfony/phpunit-bridge ###
+
+###> lexik/jwt-authentication-bundle ###
+/config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###
+
+###> other files: cache and non-dist ###
+.php_cs.cache
+docker-compose.yaml
+phpunit.xml
+###< other files: cache and non-dist ###
