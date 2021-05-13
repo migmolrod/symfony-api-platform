@@ -3,29 +3,30 @@
 namespace App\Tests\Unit\Service\User;
 
 use App\Entity\User;
-use App\Exception\User\UserNotFoundException;
+use App\Exception\User\UserAlreadyActiveException;
 use App\Messenger\Message\UserRegisteredMessage;
 use App\Service\User\RequestResetPasswordService;
+use App\Service\User\ResendActivationEmailService;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Symfony\Component\Messenger\Envelope;
 
-class RequestResetPasswordServiceTest extends UserServiceTestBase
+class ResendActivationEmailServiceTest extends UserServiceTestBase
 {
-    private RequestResetPasswordService $service;
+    private ResendActivationEmailService $service;
 
     public function setUp(): void
     {
         parent::setUp();
 
-        $this->service = new RequestResetPasswordService($this->userRepository, $this->messageBus);
+        $this->service = new ResendActivationEmailService($this->userRepository, $this->messageBus);
     }
 
     /**
      * @throws OptimisticLockException
      * @throws ORMException
      */
-    public function testRequestResetPassword(): void
+    public function testResendActivationEmail(): void
     {
         $email = 'username@api.com';
         $user = new User('username', $email);
@@ -43,26 +44,27 @@ class RequestResetPasswordServiceTest extends UserServiceTestBase
             ->with(self::isType('object'), self::isType('array'))
             ->willReturn(new Envelope($message));
 
-        $this->service->send($email);
+        $this->service->resend($email);
     }
 
     /**
      * @throws OptimisticLockException
      * @throws ORMException
      */
-    public function gestRequestResetPasswordForNonExistingUser(): void
+    public function testResendActivationEmailForAlreadyActiveUser(): void
     {
-        $email = 'non-existing@api.com';
-        $user = new User('non-existing', $email);
+        $email = 'username@api.com';
+        $user = new User('username', $email);
+        $user->setActive(true);
 
         $this->userRepository
             ->expects(self::once())
             ->method('findOneByEmailOrFail')
             ->with($email)
-            ->willThrowException(new UserNotFoundException());
+            ->willReturn($user);
 
-        $this->expectException(UserNotFoundException::class);
+        $this->expectException(UserAlreadyActiveException::class);
 
-        $this->service->send($email);
+        $this->service->resend($email);
     }
 }
