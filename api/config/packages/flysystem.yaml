@@ -2,6 +2,8 @@
 flysystem:
     storages:
         default.storage:
-            adapter: 'local'
+            adapter: 'aws'
             options:
-                directory: '%kernel.project_dir%/var/storage/default'
+                client: 'app.images.s3'
+                bucket: '%env(resolve:CDN_BUCKET)))%'
+                prefix: '%env(resolve:CDN_PREFIX)))%'
