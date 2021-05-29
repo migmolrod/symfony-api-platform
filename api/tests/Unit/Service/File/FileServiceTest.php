@@ -12,7 +12,6 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use function explode;
 use function sprintf;
 
 class FileServiceTest extends TestCase
@@ -87,7 +86,7 @@ class FileServiceTest extends TestCase
         $this->storage
             ->expects(self::once())
             ->method('delete')
-            ->with(explode($this->mediaPath, $path)[1]);
+            ->with($path);
 
         $this->service->deleteFile($path);
     }
@@ -102,7 +101,7 @@ class FileServiceTest extends TestCase
         $this->storage
             ->expects(self::once())
             ->method('delete')
-            ->with(explode($this->mediaPath, $path)[1])
+            ->with($path)
             ->willThrowException(new UnableToDeleteFile());
 
         $this->logger

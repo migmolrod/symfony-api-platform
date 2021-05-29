@@ -58,7 +58,7 @@ class FileService
     {
         try {
             if (null !== $path) {
-                $this->storage->delete(explode($this->mediaPath, $path)[1]);
+                $this->storage->delete($path);
             }
         } catch (Exception $exception) {
             $this->logger->warning(sprintf('File %s not found in the storage', $path));
