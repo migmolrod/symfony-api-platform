@@ -3,6 +3,7 @@
 namespace App\Service\Password;
 
 use App\Exception\Password\PasswordException;
+use function strlen;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -19,7 +20,7 @@ class EncoderService
 
     public function generateEncodedPassword(UserInterface $user, string $password): string
     {
-        if (self::MINIMUM_LENGTH > \strlen($password)) {
+        if (self::MINIMUM_LENGTH > strlen($password)) {
             throw PasswordException::invalidLength(self::MINIMUM_LENGTH);
         }
 

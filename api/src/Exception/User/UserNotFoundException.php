@@ -2,6 +2,7 @@
 
 namespace App\Exception\User;
 
+use function sprintf;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class UserNotFoundException extends NotFoundHttpException
@@ -13,21 +14,21 @@ class UserNotFoundException extends NotFoundHttpException
 
     public static function fromId(string $userId): self
     {
-        throw new self(\sprintf(self::ID_NOT_FOUND, $userId));
+        throw new self(sprintf(self::ID_NOT_FOUND, $userId));
     }
 
     public static function fromEmail(string $email): self
     {
-        throw new self(\sprintf(self::EMAIL_NOT_FOUND, $email));
+        throw new self(sprintf(self::EMAIL_NOT_FOUND, $email));
     }
 
     public static function fromIdAndToken(string $id, string $token): self
     {
-        throw new self(\sprintf(self::ID_AND_TOKEN_NOT_FOUND, $id, $token));
+        throw new self(sprintf(self::ID_AND_TOKEN_NOT_FOUND, $id, $token));
     }
 
     public static function fromIdAndResetPasswordToken(string $id, string $resetPasswordToken): self
     {
-        throw new self(\sprintf(self::ID_AND_RESET_PASSWORD_TOKEN_NOT_FOUND, $id, $resetPasswordToken));
+        throw new self(sprintf(self::ID_AND_RESET_PASSWORD_TOKEN_NOT_FOUND, $id, $resetPasswordToken));
     }
 }

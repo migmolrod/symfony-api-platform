@@ -4,6 +4,8 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
+        bind:
+            $mediaPath: '%env(resolve:CDN_SUBDOMAIN)%'
 
     App\:
         resource: '../src/'
@@ -24,3 +26,13 @@ services:
     App\Api\Listener\JWTCreatedListener:
         tags:
             - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_created, method: onJWTCreated }
+
+    app.images.s3:
+        class: Aws\S3\S3Client
+        arguments:
+            - version: '%env(resolve:CDN_VERSION)%'
+              region: '%env(resolve:CDN_REGION)%'
+              endpoint: '%env(resolve:CDN_ENDPOINT)%'
+              credentials:
+                  key: '%env(resolve:CDN_KEY)%'
+                  secret: '%env(resolve:CDN_SECRET)%'

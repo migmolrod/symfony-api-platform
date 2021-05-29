@@ -2,6 +2,10 @@
 
 namespace App\Entity;
 
+use App\Service\Utils\UidGenerator;
+use DateTime;
+use function filter_var;
+use LogicException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Uid\Uuid;
 
@@ -15,8 +19,8 @@ class User implements UserInterface
     private ?string $token;
     private ?string $resetPasswordToken;
     private bool $active;
-    private \DateTime $createdAt;
-    private \DateTime $updatedAt;
+    private DateTime $createdAt;
+    private DateTime $updatedAt;
 
     public function __construct(string $name, string $email)
     {
@@ -28,7 +32,7 @@ class User implements UserInterface
         $this->refreshToken();
         $this->resetPasswordToken = null;
         $this->active = false;
-        $this->createdAt = new \DateTime();
+        $this->createdAt = new DateTime();
         $this->markAsUpdated();
     }
 
@@ -54,8 +58,8 @@ class User implements UserInterface
 
     public function setEmail(string $email): void
     {
-        if (!\filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            throw new \LogicException('Invalid email');
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            throw new LogicException('Invalid email');
         }
 
         $this->email = $email;
@@ -111,12 +115,12 @@ class User implements UserInterface
         $this->active = $active;
     }
 
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): DateTime
     {
         return $this->createdAt;
     }
 
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): DateTime
     {
         return $this->updatedAt;
     }
@@ -126,7 +130,7 @@ class User implements UserInterface
      */
     public function markAsUpdated(): void
     {
-        $this->updatedAt = new \DateTime();
+        $this->updatedAt = new DateTime();
     }
 
     public function getRoles(): array
@@ -149,11 +153,11 @@ class User implements UserInterface
 
     public function refreshToken(): void
     {
-        $this->token = \sha1(\uniqid('SYM', true));
+        $this->token = UidGenerator::generateUid();
     }
 
     public function refreshResetPasswordToken(): void
     {
-        $this->resetPasswordToken = \sha1(\uniqid('SYM', true));
+        $this->resetPasswordToken = UidGenerator::generateUid();
     }
 }

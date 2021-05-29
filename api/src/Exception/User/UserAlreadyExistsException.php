@@ -2,6 +2,7 @@
 
 namespace App\Exception\User;
 
+use function sprintf;
 use Symfony\Component\HttpKernel\Exception\ConflictHttpException;
 
 class UserAlreadyExistsException extends ConflictHttpException
@@ -10,6 +11,6 @@ class UserAlreadyExistsException extends ConflictHttpException
 
     public static function fromEmail(string $email): self
     {
-        throw new self(\sprintf(self::MESSAGE, $email));
+        throw new self(sprintf(self::MESSAGE, $email));
     }
 }

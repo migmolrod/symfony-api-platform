@@ -5,6 +5,7 @@ namespace App\Tests\Unit\Service\User;
 use App\Entity\User;
 use App\Exception\User\UserNotFoundException;
 use App\Service\User\ResetPasswordService;
+use App\Service\Utils\UidGenerator;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 
@@ -25,7 +26,7 @@ class ResetPasswordServiceTest extends UserServiceTestBase
      */
     public function testResetPassword(): void
     {
-        $resetPasswordToken = sha1(uniqid('SYM', true));
+        $resetPasswordToken = UidGenerator::generateUid();
         $password = 'newPassword123';
         $user = new User('username', 'username@api.com');
 
@@ -47,7 +48,7 @@ class ResetPasswordServiceTest extends UserServiceTestBase
      */
     public function testResetPasswordForNonExistingUser(): void
     {
-        $resetPasswordToken = sha1(uniqid('SYM', true));
+        $resetPasswordToken = UidGenerator::generateUid();
         $password = 'newPassword123';
         $user = new User('non-existing', 'non-existing@api.com');
 

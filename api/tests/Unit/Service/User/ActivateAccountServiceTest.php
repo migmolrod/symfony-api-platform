@@ -5,11 +5,10 @@ namespace App\Tests\Unit\Service\User;
 use App\Entity\User;
 use App\Exception\User\UserNotFoundException;
 use App\Service\User\ActivateAccountService;
+use App\Service\Utils\UidGenerator;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
-use function sha1;
 use Symfony\Component\Uid\Uuid;
-use function uniqid;
 
 class ActivateAccountServiceTest extends UserServiceTestBase
 {
@@ -30,7 +29,7 @@ class ActivateAccountServiceTest extends UserServiceTestBase
     {
         $user = new User('user1', 'user@api.com');
         $id = Uuid::v4()->toRfc4122();
-        $token = sha1(uniqid('SYM', true));
+        $token = UidGenerator::generateUid();
 
         $this->userRepository
             ->expects(self::once())
@@ -52,7 +51,7 @@ class ActivateAccountServiceTest extends UserServiceTestBase
     public function testForNonExistingUser(): void
     {
         $id = Uuid::v4()->toRfc4122();
-        $token = sha1(uniqid('SYM', true));
+        $token = UidGenerator::generateUid();
 
         $this->userRepository
             ->expects(self::once())

@@ -2,7 +2,6 @@
 
 namespace App\Tests\Unit\Service\User;
 
-use App\Entity\User;
 use App\Exception\Password\PasswordException;
 use App\Exception\User\UserAlreadyExistsException;
 use App\Messenger\Message\UserRegisteredMessage;
@@ -37,7 +36,6 @@ class UserRegisterServiceTest extends UserServiceTestBase
 
         $user = $this->service->create($name, $email, $password);
 
-        self::assertInstanceOf(User::class, $user);
         self::assertEquals($name, $user->getName());
         self::assertEquals($email, $user->getEmail());
         self::assertEquals($email, $user->getUsername());
