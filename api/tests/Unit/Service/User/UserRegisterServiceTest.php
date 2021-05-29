@@ -37,7 +37,6 @@ class UserRegisterServiceTest extends UserServiceTestBase
 
         $user = $this->service->create($name, $email, $password);
 
-        self::assertInstanceOf(User::class, $user);
         self::assertEquals($name, $user->getName());
         self::assertEquals($email, $user->getEmail());
         self::assertEquals($email, $user->getUsername());
