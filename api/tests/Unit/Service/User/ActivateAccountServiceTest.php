@@ -30,7 +30,7 @@ class ActivateAccountServiceTest extends UserServiceTestBase
     {
         $user = new User('user1', 'user@api.com');
         $id = Uuid::v4()->toRfc4122();
-        $token = sha1(uniqid('SYM', true));
+        $token = UidGenerator::generateUid();
 
         $this->userRepository
             ->expects(self::once())
@@ -52,7 +52,7 @@ class ActivateAccountServiceTest extends UserServiceTestBase
     public function testForNonExistingUser(): void
     {
         $id = Uuid::v4()->toRfc4122();
-        $token = sha1(uniqid('SYM', true));
+        $token = UidGenerator::generateUid();
 
         $this->userRepository
             ->expects(self::once())

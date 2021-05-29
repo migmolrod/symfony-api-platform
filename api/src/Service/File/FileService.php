@@ -2,6 +2,7 @@
 
 namespace App\Service\File;
 
+use App\Service\Utils\UidGenerator;
 use Exception;
 use League\Flysystem\FilesystemException;
 use League\Flysystem\FilesystemOperator;
@@ -9,10 +10,8 @@ use League\Flysystem\Visibility;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use function sha1;
 use function sprintf;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use function uniqid;
 
 class FileService
 {
@@ -37,7 +36,7 @@ class FileService
         $filename = sprintf(
             '%s/%s.%s',
             $prefix,
-            sha1(uniqid('SYM', true)),
+            UidGenerator::generateUid(),
             $file->guessExtension()
         );
 
