@@ -1,9 +1,9 @@
 # Read the documentation at https://github.com/thephpleague/flysystem-bundle/blob/master/docs/1-getting-started.md
 flysystem:
     storages:
-        default.storage:
+        cdn.storage:
             adapter: 'aws'
             options:
                 client: 'app.images.s3'
-                bucket: '%env(resolve:CDN_BUCKET)))%'
-                prefix: '%env(resolve:CDN_PREFIX)))%'
+                bucket: '%env(resolve:CDN_BUCKET)%'
+                prefix: '%env(resolve:CDN_PREFIX)%'

@@ -30,9 +30,9 @@ services:
     app.images.s3:
         class: Aws\S3\S3Client
         arguments:
-            - version: '%env(resolve:CDN_VERSION))%'
-              region: '%env(resolve:CDN_REGION)))%'
-              endpoint: '%env(resolve:CDN_ENDPOINT)))%'
+            - version: '%env(resolve:CDN_VERSION)%'
+              region: '%env(resolve:CDN_REGION)%'
+              endpoint: '%env(resolve:CDN_ENDPOINT)%'
               credentials:
-                  key: '%env(resolve:CDN_KEY)))%'
-                  secret: '%env(resolve:CDN_SECRET)))%'
+                  key: '%env(resolve:CDN_KEY)%'
+                  secret: '%env(resolve:CDN_SECRET)%'
