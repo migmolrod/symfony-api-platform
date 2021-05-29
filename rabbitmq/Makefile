@@ -30,5 +30,5 @@ restart: ## Restarts all containers
 build: ## Rebuilds all containers
 	U_ID=${UID} docker-compose build
 
--ssh: ## SSHs into the backend container
-	U_ID=${UID} docker exec --user ${UID} -it ${DOCKER_BE} bash
+ssh: ## SSHs into the backend container
+	U_ID=${UID} docker exec --user ${UID} -it ${RABBIT} bash
