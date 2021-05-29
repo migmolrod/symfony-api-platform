@@ -4,14 +4,16 @@ namespace App\Service\File;
 
 use App\Service\Utils\UidGenerator;
 use Exception;
+use function explode;
+use function fopen;
 use League\Flysystem\FilesystemException;
 use League\Flysystem\FilesystemOperator;
 use League\Flysystem\Visibility;
 use Psr\Log\LoggerInterface;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use function sprintf;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class FileService
 {
@@ -42,7 +44,7 @@ class FileService
 
         $this->storage->writeStream(
             $filename,
-            \fopen($file->getPathname(), 'rb'),
+            fopen($file->getPathname(), 'rb'),
             ['visibility' => Visibility::PUBLIC]
         );
 
@@ -56,7 +58,7 @@ class FileService
     {
         try {
             if (null !== $path) {
-                $this->storage->delete(\explode($this->mediaPath, $path)[1]);
+                $this->storage->delete(explode($this->mediaPath, $path)[1]);
             }
         } catch (Exception $exception) {
             $this->logger->warning(sprintf('File %s not found in the storage', $path));

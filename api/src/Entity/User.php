@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Service\Utils\UidGenerator;
 use DateTime;
+use function filter_var;
+use LogicException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Uid\Uuid;
 
@@ -56,8 +58,8 @@ class User implements UserInterface
 
     public function setEmail(string $email): void
     {
-        if (!\filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            throw new \LogicException('Invalid email');
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            throw new LogicException('Invalid email');
         }
 
         $this->email = $email;

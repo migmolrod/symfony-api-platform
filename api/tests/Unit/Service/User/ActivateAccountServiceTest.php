@@ -7,9 +7,7 @@ use App\Exception\User\UserNotFoundException;
 use App\Service\User\ActivateAccountService;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
-use function sha1;
 use Symfony\Component\Uid\Uuid;
-use function uniqid;
 
 class ActivateAccountServiceTest extends UserServiceTestBase
 {

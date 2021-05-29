@@ -4,6 +4,7 @@ namespace App\Api\ArgumentResolver;
 
 use App\Entity\User;
 use App\Repository\UserRepository;
+use Generator;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Controller\ArgumentValueResolverInterface;
 use Symfony\Component\HttpKernel\ControllerMetadata\ArgumentMetadata;
@@ -36,7 +37,7 @@ class UserArgumentResolver implements ArgumentValueResolverInterface
         return $token->getuser() instanceof User;
     }
 
-    public function resolve(Request $request, ArgumentMetadata $argument): \Generator
+    public function resolve(Request $request, ArgumentMetadata $argument): Generator
     {
         yield $this->userRepository->findOneByEmailOrFail($this->tokenStorage->getToken()->getUser()->getEmail());
     }
