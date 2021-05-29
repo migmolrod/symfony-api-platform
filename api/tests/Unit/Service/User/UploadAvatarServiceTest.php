@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class UploadAvatarServiceTest extends UserServiceTestBase
 {
-    /** @var FileService|MockObject  */
+    /** @var FileService|MockObject */
     private $fileService;
     private string $mediaPath;
 

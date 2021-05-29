@@ -2,7 +2,6 @@
 
 namespace App\Tests\Unit\Service\User;
 
-use App\Entity\User;
 use App\Exception\Password\PasswordException;
 use App\Exception\User\UserAlreadyExistsException;
 use App\Messenger\Message\UserRegisteredMessage;

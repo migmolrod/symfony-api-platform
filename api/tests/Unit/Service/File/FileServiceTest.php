@@ -9,10 +9,10 @@ use League\Flysystem\UnableToDeleteFile;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
+use function sprintf;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use function sprintf;
 
 class FileServiceTest extends TestCase
 {
@@ -20,7 +20,7 @@ class FileServiceTest extends TestCase
     private $storage;
     /** @var LoggerInterface|MockObject */
     private $logger;
-    /** @var string */
+
     private string $mediaPath;
 
     private FileService $service;

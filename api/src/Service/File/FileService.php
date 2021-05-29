@@ -4,7 +4,6 @@ namespace App\Service\File;
 
 use App\Service\Utils\UidGenerator;
 use Exception;
-use function explode;
 use function fopen;
 use League\Flysystem\FilesystemException;
 use League\Flysystem\FilesystemOperator;
