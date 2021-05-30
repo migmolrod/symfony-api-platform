@@ -29,7 +29,7 @@ class ResendActivationEmailActionTest extends UserTestBase
 
         $response = self::$roger->getResponse();
 
-        $this->assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
+        self::assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
     }
 
     public function testResendActivationEmailToActiveUser(): void
@@ -49,7 +49,7 @@ class ResendActivationEmailActionTest extends UserTestBase
 
         $response = self::$peter->getResponse();
 
-        $this->assertEquals(JsonResponse::HTTP_CONFLICT, $response->getStatusCode());
+        self::assertEquals(JsonResponse::HTTP_CONFLICT, $response->getStatusCode());
     }
 
     public function testResendActivationEmailToNonExistingUser(): void
@@ -69,6 +69,6 @@ class ResendActivationEmailActionTest extends UserTestBase
 
         $response = self::$client->getResponse();
 
-        $this->assertEquals(JsonResponse::HTTP_NOT_FOUND, $response->getStatusCode());
+        self::assertEquals(JsonResponse::HTTP_NOT_FOUND, $response->getStatusCode());
     }
 }

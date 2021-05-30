@@ -32,8 +32,8 @@ class LoginActionTest extends UserTestBase
 
         $response = self::$peter->getResponse();
 
-        $this->assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
-        $this->assertInstanceOf(JWTAuthenticationSuccessResponse::class, $response);
+        self::assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
+        self::assertInstanceOf(JWTAuthenticationSuccessResponse::class, $response);
     }
 
     /**
@@ -57,7 +57,7 @@ class LoginActionTest extends UserTestBase
 
         $response = self::$peter->getResponse();
 
-        $this->assertEquals(JsonResponse::HTTP_UNAUTHORIZED, $response->getStatusCode());
-        $this->assertInstanceOf(JWTAuthenticationFailureResponse::class, $response);
+        self::assertEquals(JsonResponse::HTTP_UNAUTHORIZED, $response->getStatusCode());
+        self::assertInstanceOf(JWTAuthenticationFailureResponse::class, $response);
     }
 }

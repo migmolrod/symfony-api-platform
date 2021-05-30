@@ -4,7 +4,8 @@ namespace App\Tests\Functional;
 
 use App\Repository\UserRepository;
 use Doctrine\DBAL\Connection;
-use Doctrine\DBAL\Exception;
+use Doctrine\DBAL\Driver\Exception as DoctrineDbalDriverException;
+use Doctrine\DBAL\Exception as DoctrineDbalException;
 use Hautelook\AliceBundle\PhpUnit\RecreateDatabaseTrait;
 use function json_decode;
 use JsonException;
@@ -78,8 +79,8 @@ class TestBase extends WebTestCase
     }
 
     /**
-     * @throws \Doctrine\DBAL\Driver\Exception
-     * @throws Exception
+     * @throws DoctrineDbalDriverException
+     * @throws DoctrineDbalException
      */
     protected function getPeterId()
     {
@@ -89,8 +90,8 @@ class TestBase extends WebTestCase
     }
 
     /**
-     * @throws \Doctrine\DBAL\Driver\Exception
-     * @throws Exception
+     * @throws DoctrineDbalDriverException
+     * @throws DoctrineDbalException
      */
     protected function getBrianId()
     {
@@ -100,13 +101,46 @@ class TestBase extends WebTestCase
     }
 
     /**
-     * @throws \Doctrine\DBAL\Driver\Exception
-     * @throws Exception
+     * @throws DoctrineDbalDriverException
+     * @throws DoctrineDbalException
      */
     protected function getRogerId()
     {
         return $this->initDbConnection()->executeQuery(
             "SELECT id FROM user WHERE email = 'roger@api.com'"
+        )->fetchOne();
+    }
+
+    /**
+     * @throws DoctrineDbalDriverException
+     * @throws DoctrineDbalException
+     */
+    protected function getPeterToken()
+    {
+        return $this->initDbConnection()->executeQuery(
+            "SELECT token FROM user WHERE email = 'peter@api.com'"
+        )->fetchOne();
+    }
+
+    /**
+     * @throws DoctrineDbalDriverException
+     * @throws DoctrineDbalException
+     */
+    protected function getBrianToken()
+    {
+        return $this->initDbConnection()->executeQuery(
+            "SELECT token FROM user WHERE email = 'brian@api.com'"
+        )->fetchOne();
+    }
+
+    /**
+     * @throws DoctrineDbalDriverException
+     * @throws DoctrineDbalException
+     */
+    protected function getRogerToken()
+    {
+        return $this->initDbConnection()->executeQuery(
+            "SELECT token FROM user WHERE email = 'roger@api.com'"
         )->fetchOne();
     }
 }

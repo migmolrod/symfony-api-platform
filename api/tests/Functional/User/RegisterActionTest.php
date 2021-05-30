@@ -30,8 +30,8 @@ class RegisterActionTest extends UserTestBase
         $response = self::$client->getResponse();
         $responseData = $this->getResponseData($response);
 
-        $this->assertEquals(JsonResponse::HTTP_CREATED, $response->getStatusCode());
-        $this->assertEquals($payload['email'], $responseData['email']);
+        self::assertEquals(JsonResponse::HTTP_CREATED, $response->getStatusCode());
+        self::assertEquals($payload['email'], $responseData['email']);
     }
 
     /**
@@ -54,9 +54,8 @@ class RegisterActionTest extends UserTestBase
         );
 
         $response = self::$client->getResponse();
-        $responseData = $this->getResponseData($response);
 
-        $this->assertEquals(JsonResponse::HTTP_BAD_REQUEST, $response->getStatusCode());
+        self::assertEquals(JsonResponse::HTTP_BAD_REQUEST, $response->getStatusCode());
     }
 
     /**
@@ -80,8 +79,7 @@ class RegisterActionTest extends UserTestBase
         );
 
         $response = self::$client->getResponse();
-        $responseData = $this->getResponseData($response);
 
-        $this->assertEquals(JsonResponse::HTTP_BAD_REQUEST, $response->getStatusCode());
+        self::assertEquals(JsonResponse::HTTP_BAD_REQUEST, $response->getStatusCode());
     }
 }

@@ -160,4 +160,12 @@ class User implements UserInterface
     {
         $this->resetPasswordToken = UidGenerator::generateUid();
     }
+
+    /**
+     * @param User|UserInterface $user
+     */
+    public function equals($user): bool
+    {
+        return $this->id === $user->getId();
+    }
 }

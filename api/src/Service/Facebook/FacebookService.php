@@ -12,8 +12,8 @@ use Doctrine\ORM\ORMException;
 use Exception;
 use Facebook\Exceptions\FacebookSDKException;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use function sprintf;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class FacebookService
 {
