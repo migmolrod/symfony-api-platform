@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Service\Utils\UidGenerator;
 use DateTime;
+use phpDocumentor\Reflection\Types\Boolean;
 use function filter_var;
 use LogicException;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -159,5 +160,13 @@ class User implements UserInterface
     public function refreshResetPasswordToken(): void
     {
         $this->resetPasswordToken = UidGenerator::generateUid();
+    }
+
+    /**
+     * @param User|UserInterface $user
+     */
+    public function equals($user): Boolean
+    {
+        return $this->id === $user->getId();
     }
 }
