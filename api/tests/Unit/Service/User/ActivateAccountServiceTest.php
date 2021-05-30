@@ -8,6 +8,7 @@ use App\Service\User\ActivateAccountService;
 use App\Service\Utils\UidGenerator;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
+use function sprintf;
 use Symfony\Component\Uid\Uuid;
 
 class ActivateAccountServiceTest extends UserServiceTestBase
@@ -57,10 +58,10 @@ class ActivateAccountServiceTest extends UserServiceTestBase
             ->expects(self::once())
             ->method('findOneInactiveByIdAndTokenOrFail')
             ->with($id, $token)
-            ->willThrowException(new UserNotFoundException(\sprintf('User with id %s and token %s not found or already active', $id, $token)));
+            ->willThrowException(new UserNotFoundException(sprintf('User with id %s and token %s not found or already active', $id, $token)));
 
         $this->expectException(UserNotFoundException::class);
-        $this->expectExceptionMessage(\sprintf('User with id %s and token %s not found or already active', $id, $token));
+        $this->expectExceptionMessage(sprintf('User with id %s and token %s not found or already active', $id, $token));
 
         $this->service->activate($id, $token);
     }
