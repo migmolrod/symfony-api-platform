@@ -29,7 +29,7 @@ class RequestResetPasswordActionTest extends UserTestBase
 
         $response = self::$peter->getResponse();
 
-        $this->assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
+        self::assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
     }
 
     /**
@@ -52,6 +52,6 @@ class RequestResetPasswordActionTest extends UserTestBase
 
         $response = self::$peter->getResponse();
 
-        $this->assertEquals(JsonResponse::HTTP_NOT_FOUND, $response->getStatusCode());
+        self::assertEquals(JsonResponse::HTTP_NOT_FOUND, $response->getStatusCode());
     }
 }

@@ -36,7 +36,7 @@ class ResetPasswordActionTest extends UserTestBase
         $response = self::$peter->getResponse();
         $responseData = $this->getResponseData($response);
 
-        $this->assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
-        $this->assertEquals($peterId, $responseData['id']);
+        self::assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
+        self::assertEquals($peterId, $responseData['id']);
     }
 }

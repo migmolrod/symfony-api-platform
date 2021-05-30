@@ -3,9 +3,9 @@
 namespace App\Security\Authorization\Voter;
 
 use App\Entity\User;
+use function in_array;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\Voter;
-use function in_array;
 
 class UserVoter extends Voter
 {

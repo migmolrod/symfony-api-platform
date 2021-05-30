@@ -4,9 +4,9 @@ namespace App\Entity;
 
 use App\Service\Utils\UidGenerator;
 use DateTime;
-use phpDocumentor\Reflection\Types\Boolean;
 use function filter_var;
 use LogicException;
+use phpDocumentor\Reflection\Types\Boolean;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Uid\Uuid;
 
@@ -165,7 +165,7 @@ class User implements UserInterface
     /**
      * @param User|UserInterface $user
      */
-    public function equals($user): Boolean
+    public function equals($user): bool
     {
         return $this->id === $user->getId();
     }

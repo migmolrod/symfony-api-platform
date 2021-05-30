@@ -33,7 +33,7 @@ class ChangePasswordActionTest extends UserTestBase
 
         $response = self::$brian->getResponse();
 
-        $this->assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
+        self::assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
     }
 
     /**
@@ -59,6 +59,6 @@ class ChangePasswordActionTest extends UserTestBase
 
         $response = self::$peter->getResponse();
 
-        $this->assertEquals(JsonResponse::HTTP_BAD_REQUEST, $response->getStatusCode());
+        self::assertEquals(JsonResponse::HTTP_BAD_REQUEST, $response->getStatusCode());
     }
 }
