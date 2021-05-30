@@ -25,7 +25,6 @@ class DeleteUserTest extends UserTestBase
         $response = self::$peter->getResponse();
 
         self::assertEquals(JsonResponse::HTTP_NO_CONTENT, $response->getStatusCode());
-
     }
 
     /**

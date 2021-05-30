@@ -6,7 +6,6 @@ use App\Service\Utils\UidGenerator;
 use DateTime;
 use function filter_var;
 use LogicException;
-use phpDocumentor\Reflection\Types\Boolean;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Uid\Uuid;
 
