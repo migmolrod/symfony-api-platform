@@ -238,3 +238,9 @@ App\Entity\User:
                                     newPassword:
                                         type: string
                                         required: true
+    properties:
+        groups:
+            subresource:
+                resourceClass: App\Entity\Group
+                collection: true
+                maxDepth: 1
