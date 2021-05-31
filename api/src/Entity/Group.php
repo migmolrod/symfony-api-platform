@@ -5,6 +5,7 @@ namespace App\Entity;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Uid\Uuid;
 
 class Group
@@ -91,7 +92,10 @@ class Group
         return $this->users->contains($user);
     }
 
-    public function isOwnedBy(User $user): bool
+    /**
+     * @param User|UserInterface $user
+     */
+    public function isOwnedBy($user): bool
     {
         return $this->owner->equals($user);
     }
