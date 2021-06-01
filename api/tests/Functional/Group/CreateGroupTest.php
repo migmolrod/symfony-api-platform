@@ -67,7 +67,6 @@ class CreateGroupTest extends GroupTestBase
         $responseData = $this->getResponseData($response);
 
         self::assertEquals(JsonResponse::HTTP_FORBIDDEN, $response->getStatusCode());
-        /* TODO replicate this kind of assert in other test that throw custom exceptions */
         self::assertEquals(CannotCreateGroupForAnotherUserException::class, $responseData['class']);
     }
 }
