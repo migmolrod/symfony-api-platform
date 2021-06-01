@@ -1,0 +1,9 @@
+App\Entity\Group:
+    Group-0:
+        __construct:
+            name: Peter group
+            owner: '@User-0'
+    Group-1:
+        __construct:
+            name: Brian group
+            owner: '@User-1'

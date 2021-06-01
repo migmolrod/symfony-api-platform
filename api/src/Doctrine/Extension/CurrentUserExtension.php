@@ -12,6 +12,9 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 
 class CurrentUserExtension implements QueryCollectionExtensionInterface
 {
+    public const GROUP_DENIED = 'You can\'t retrieve another user groups';
+    public const USER_DENIED = 'You can\'t retrieve users of a group you don\'t belong to';
+
     private TokenStorageInterface $tokenStorage;
 
     public function __construct(TokenStorageInterface $tokenStorage)
@@ -32,7 +35,7 @@ class CurrentUserExtension implements QueryCollectionExtensionInterface
             : null;
 
         if ((Group::class === $resourceClass) && $queryBuilder->getParameters()->first()->getValue() !== $user->getId()) {
-            throw new AccessDeniedHttpException('You can\'t retrieve another user groups');
+            throw new AccessDeniedHttpException(self::GROUP_DENIED);
         }
 
         if (User::class === $resourceClass) {
@@ -42,7 +45,7 @@ class CurrentUserExtension implements QueryCollectionExtensionInterface
                 }
             }
 
-            throw new AccessDeniedHttpException('You can\'t retrieve users of another group');
+            throw new AccessDeniedHttpException(self::USER_DENIED);
         }
     }
 }
