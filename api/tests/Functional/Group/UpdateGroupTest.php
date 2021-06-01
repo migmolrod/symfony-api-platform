@@ -6,21 +6,27 @@ use Doctrine\DBAL\Driver\Exception as DoctrineDbalDriverException;
 use Doctrine\DBAL\Exception as DoctrineDbalException;
 use JsonException;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use function json_encode;
 
-class GetGroupTest extends GroupTestBase
+class UpdateGroupTest extends GroupTestBase
 {
     /**
      * @throws JsonException
      * @throws DoctrineDbalException
      * @throws DoctrineDbalDriverException
      */
-    public function testGetGroup(): void
+    public function testUpdateGroup(): void
     {
+        $payload = ['name' => 'New Name'];
         $peterGroupId = $this->getPeterGroupId();
 
         self::$peter->request(
-            'GET',
+            'PUT',
             sprintf('%s/%s', $this->endpoint, $peterGroupId),
+            [],
+            [],
+            [],
+            json_encode($payload, JSON_THROW_ON_ERROR)
         );
 
         $response = self::$peter->getResponse();
@@ -28,20 +34,26 @@ class GetGroupTest extends GroupTestBase
 
         self::assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
         self::assertEquals($peterGroupId, $responseData['id']);
-        self::assertEquals('Peter Group', $responseData['name']);
+        self::assertEquals($payload['name'], $responseData['name']);
     }
 
     /**
+     * @throws JsonException
      * @throws DoctrineDbalException
      * @throws DoctrineDbalDriverException
      */
-    public function testGetAnotherGroup(): void
+    public function testUpdateAnotherGroup(): void
     {
+        $payload = ['name' => 'New Name'];
         $peterGroupId = $this->getPeterGroupId();
 
         self::$brian->request(
-            'GET',
+            'PUT',
             sprintf('%s/%s', $this->endpoint, $peterGroupId),
+            [],
+            [],
+            [],
+            json_encode($payload, JSON_THROW_ON_ERROR)
         );
 
         $response = self::$brian->getResponse();
