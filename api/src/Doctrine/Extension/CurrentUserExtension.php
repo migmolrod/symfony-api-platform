@@ -12,8 +12,8 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
 
 class CurrentUserExtension implements QueryCollectionExtensionInterface
 {
-    public const GROUP_DENIED = 'You can\'t retrieve another user groups';
-    public const USER_DENIED = 'You can\'t retrieve users of a group you don\'t belong to';
+    private const GROUP_DENIED = 'You can\'t retrieve another user groups';
+    private const USER_DENIED = 'You can\'t retrieve users of a group you don\'t belong to';
 
     private TokenStorageInterface $tokenStorage;
 

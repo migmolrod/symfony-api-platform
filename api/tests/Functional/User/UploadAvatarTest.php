@@ -2,7 +2,8 @@
 
 namespace App\Tests\Functional\User;
 
-use Doctrine\DBAL\Driver\Exception;
+use Doctrine\DBAL\Driver\Exception as DoctrineDbalDriverException;
+use Doctrine\DBAL\Exception as DoctrineDbalException;
 use function sprintf;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -10,8 +11,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 class UploadAvatarTest extends UserTestBase
 {
     /**
-     * @throws \Doctrine\DBAL\Exception
-     * @throws Exception
+     * @throws DoctrineDbalException
+     * @throws DoctrineDbalDriverException
      */
     public function testUploadAvatar(): void
     {
@@ -32,6 +33,10 @@ class UploadAvatarTest extends UserTestBase
         self::assertEquals(JsonResponse::HTTP_CREATED, $response->getStatusCode());
     }
 
+    /**
+     * @throws DoctrineDbalDriverException
+     * @throws DoctrineDbalException
+     */
     public function testUploadWithInvalidInputName(): void
     {
         $avatar = new UploadedFile(
