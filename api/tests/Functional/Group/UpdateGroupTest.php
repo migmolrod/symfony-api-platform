@@ -4,9 +4,9 @@ namespace App\Tests\Functional\Group;
 
 use Doctrine\DBAL\Driver\Exception as DoctrineDbalDriverException;
 use Doctrine\DBAL\Exception as DoctrineDbalException;
+use function json_encode;
 use JsonException;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use function json_encode;
 
 class UpdateGroupTest extends GroupTestBase
 {

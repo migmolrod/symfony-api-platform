@@ -2,7 +2,6 @@
 
 namespace App\Tests\Functional\Group;
 
-use App\Doctrine\Extension\CurrentUserExtension;
 use Doctrine\DBAL\Driver\Exception as DoctrineDbalDriverException;
 use Doctrine\DBAL\Exception as DoctrineDbalException;
 use JsonException;
