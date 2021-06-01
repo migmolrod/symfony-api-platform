@@ -28,6 +28,14 @@ security:
             pattern: ^/api/v1/users/reset-password
             methods: [POST]
             security: false
+        facebook_auth:
+            pattern: /api/v1/users/facebook/auth
+            methods: [POST]
+            security: false
+        activate_account:
+            pattern: ^/api/v1/users/(.*)/activate
+            methods: [PUT]
+            security: false
 
         login:
             pattern: /api/v1/users/login

@@ -6,6 +6,9 @@ services:
         autoconfigure: true
         bind:
             $mediaPath: '%env(resolve:CDN_SUBDOMAIN)%'
+            $facebookClientId: '%env(resolve:FACEBOOK_CLIENT)%'
+            $facebookSecret: '%env(resolve:FACEBOOK_SECRET)%'
+            $facebookGraphVersion: '%env(resolve:FACEBOOK_GRAPH_VERSION)%'
 
     App\:
         resource: '../src/'
@@ -36,3 +39,8 @@ services:
               credentials:
                   key: '%env(resolve:CDN_KEY)%'
                   secret: '%env(resolve:CDN_SECRET)%'
+
+    _instanceof:
+        App\Api\Listener\PreWriteListener\PreWriteListener:
+            tags:
+                - { name: kernel.event_listener, event: kernel.view, method: onKernelView, priority: 33 }

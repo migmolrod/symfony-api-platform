@@ -8,7 +8,7 @@ App\Entity\User:
             path: /users/register
             controller: App\Api\Action\User\UserRegister
             denormalization_context:
-                groups: [user_write]
+                groups: [user_register]
             openapi_context:
                 summary: Register a new User
         resend_activation_email:
@@ -136,10 +136,45 @@ App\Entity\User:
                                     avatar:
                                         type: string
                                         format: binary
+        facebook_auth:
+            method: POST
+            path: /users/facebook/auth
+            controller: App\Api\Action\Facebook\Authorization
+            deserialize: false
+            openapi_context:
+                summary: OAuth authorization with Facebook
+                requestBody:
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    accessToken:
+                                        type: string
+                                        required: true
+                responses:
+                    200:
+                        description: OK
+                        content:
+                            application/json:
+                                schema:
+                                    type: object
+                                    properties:
+                                        token:
+                                            type: string
 
     itemOperations:
         get:
             method: GET
+            security: is_granted("USER_READ", object)
+        put:
+            method: PUT
+            security: is_granted("USER_UPDATE", object)
+            denormalization_context:
+                groups: [user_update]
+        delete:
+            method: DELETE
+            security: is_granted("USER_DELETE", object)
         activate:
             method: PUT
             path: /users/{id}/activate
@@ -203,3 +238,9 @@ App\Entity\User:
                                     newPassword:
                                         type: string
                                         required: true
+    properties:
+        groups:
+            subresource:
+                resourceClass: App\Entity\Group
+                collection: true
+                maxDepth: 1

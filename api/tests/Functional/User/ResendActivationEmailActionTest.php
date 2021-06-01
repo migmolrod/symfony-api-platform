@@ -29,9 +29,12 @@ class ResendActivationEmailActionTest extends UserTestBase
 
         $response = self::$roger->getResponse();
 
-        $this->assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
+        self::assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
     }
 
+    /**
+     * @throws JsonException
+     */
     public function testResendActivationEmailToActiveUser(): void
     {
         $payload = [
@@ -49,9 +52,12 @@ class ResendActivationEmailActionTest extends UserTestBase
 
         $response = self::$peter->getResponse();
 
-        $this->assertEquals(JsonResponse::HTTP_CONFLICT, $response->getStatusCode());
+        self::assertEquals(JsonResponse::HTTP_CONFLICT, $response->getStatusCode());
     }
 
+    /**
+     * @throws JsonException
+     */
     public function testResendActivationEmailToNonExistingUser(): void
     {
         $payload = [
@@ -69,6 +75,6 @@ class ResendActivationEmailActionTest extends UserTestBase
 
         $response = self::$client->getResponse();
 
-        $this->assertEquals(JsonResponse::HTTP_NOT_FOUND, $response->getStatusCode());
+        self::assertEquals(JsonResponse::HTTP_NOT_FOUND, $response->getStatusCode());
     }
 }
