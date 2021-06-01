@@ -82,7 +82,7 @@ class TestBase extends WebTestCase
      * @throws DoctrineDbalDriverException
      * @throws DoctrineDbalException
      */
-    protected function getPeterId()
+    protected function getPeterId(): string
     {
         return $this->initDbConnection()->executeQuery(
             "SELECT id FROM user WHERE email = 'peter@api.com'"
@@ -93,7 +93,7 @@ class TestBase extends WebTestCase
      * @throws DoctrineDbalDriverException
      * @throws DoctrineDbalException
      */
-    protected function getBrianId()
+    protected function getBrianId(): string
     {
         return $this->initDbConnection()->executeQuery(
             "SELECT id FROM user WHERE email = 'brian@api.com'"
@@ -104,7 +104,7 @@ class TestBase extends WebTestCase
      * @throws DoctrineDbalDriverException
      * @throws DoctrineDbalException
      */
-    protected function getRogerId()
+    protected function getRogerId(): string
     {
         return $this->initDbConnection()->executeQuery(
             "SELECT id FROM user WHERE email = 'roger@api.com'"
@@ -115,7 +115,7 @@ class TestBase extends WebTestCase
      * @throws DoctrineDbalDriverException
      * @throws DoctrineDbalException
      */
-    protected function getPeterToken()
+    protected function getPeterToken(): string
     {
         return $this->initDbConnection()->executeQuery(
             "SELECT token FROM user WHERE email = 'peter@api.com'"
@@ -126,7 +126,7 @@ class TestBase extends WebTestCase
      * @throws DoctrineDbalDriverException
      * @throws DoctrineDbalException
      */
-    protected function getBrianToken()
+    protected function getBrianToken(): string
     {
         return $this->initDbConnection()->executeQuery(
             "SELECT token FROM user WHERE email = 'brian@api.com'"
@@ -137,10 +137,32 @@ class TestBase extends WebTestCase
      * @throws DoctrineDbalDriverException
      * @throws DoctrineDbalException
      */
-    protected function getRogerToken()
+    protected function getRogerToken(): string
     {
         return $this->initDbConnection()->executeQuery(
             "SELECT token FROM user WHERE email = 'roger@api.com'"
+        )->fetchOne();
+    }
+
+    /**
+     * @throws DoctrineDbalDriverException
+     * @throws DoctrineDbalException
+     */
+    protected function getPeterGroupId()
+    {
+        return $this->initDbConnection()->executeQuery(
+            "SELECT id FROM user_group WHERE name = 'Peter Group'"
+        )->fetchOne();
+    }
+
+    /**
+     * @throws DoctrineDbalDriverException
+     * @throws DoctrineDbalException
+     */
+    protected function getBrianGroupId()
+    {
+        return $this->initDbConnection()->executeQuery(
+            "SELECT id FROM user_group WHERE name = 'Brian Group'"
         )->fetchOne();
     }
 }
