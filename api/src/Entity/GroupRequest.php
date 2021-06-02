@@ -8,8 +8,8 @@ use Symfony\Component\Uid\Uuid;
 
 class GroupRequest
 {
-    private const PENDING = 'pending';
-    private const ACCEPTED = 'accepted';
+    public const PENDING = 'pending';
+    public const ACCEPTED = 'accepted';
 
     private string $id;
     private Group $group;
