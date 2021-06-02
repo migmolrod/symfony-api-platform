@@ -24,6 +24,7 @@ class SendRequestToUser
     public function __invoke(Request $request, User $user, string $id): JsonResponse
     {
         $this->sendRequestToUserService->send($id, RequestService::getField($request, 'email'), $user->getId());
+
         return new JsonResponse(['message' => 'The request has been sent']);
     }
 }
