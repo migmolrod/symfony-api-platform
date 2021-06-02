@@ -5,6 +5,8 @@ namespace App\Api\Action\Group;
 use App\Entity\User;
 use App\Service\Group\SendRequestToUserService;
 use App\Service\Request\RequestService;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use JsonException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,6 +22,8 @@ class SendRequestToUser
 
     /**
      * @throws JsonException
+     * @throws ORMException
+     * @throws OptimisticLockException
      */
     public function __invoke(Request $request, User $user, string $id): JsonResponse
     {

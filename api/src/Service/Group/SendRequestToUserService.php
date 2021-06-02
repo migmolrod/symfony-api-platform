@@ -10,6 +10,8 @@ use App\Messenger\RoutingKey;
 use App\Repository\GroupRepository;
 use App\Repository\GroupRequestRepository;
 use App\Repository\UserRepository;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use Symfony\Component\Messenger\Bridge\Amqp\Transport\AmqpStamp;
 use Symfony\Component\Messenger\MessageBusInterface;
 
@@ -32,6 +34,10 @@ class SendRequestToUserService
         $this->messageBus = $messageBus;
     }
 
+    /**
+     * @throws OptimisticLockException
+     * @throws ORMException
+     */
     public function send(string $groupId, string $email, string $requesterId): void
     {
         $group = $this->groupRepository->findOneByIdOrFail($groupId);
