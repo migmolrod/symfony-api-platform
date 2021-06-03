@@ -4,7 +4,6 @@ namespace App\Tests\Functional\Group;
 
 use App\Exception\Group\CannotRemoveAnotherUserIfNotOwnerException;
 use App\Exception\Group\CannotRemoveOwnerException;
-use App\Exception\Group\NotOwnerOfGroupException;
 use App\Exception\Group\UserNotMemberOfGroupException;
 use Doctrine\DBAL\Driver\Exception as DoctrineDbalDriverException;
 use Doctrine\DBAL\Exception as DoctrineDbalException;

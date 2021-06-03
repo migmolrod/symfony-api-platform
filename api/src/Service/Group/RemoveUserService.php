@@ -4,7 +4,6 @@ namespace App\Service\Group;
 
 use App\Exception\Group\CannotRemoveAnotherUserIfNotOwnerException;
 use App\Exception\Group\CannotRemoveOwnerException;
-use App\Exception\Group\NotOwnerOfGroupException;
 use App\Exception\Group\UserNotMemberOfGroupException;
 use App\Repository\GroupRepository;
 use App\Repository\UserRepository;
@@ -51,7 +50,7 @@ class RemoveUserService
         $user->removeGroup($group);
 
         $this->groupRepository->getEntityManager()->transactional(
-            function(EntityManagerInterface $em) use ($group) {
+            function (EntityManagerInterface $em) use ($group) {
                 $em->persist($group);
             }
         );
