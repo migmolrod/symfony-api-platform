@@ -7,7 +7,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class GroupNotFoundException extends NotFoundHttpException
 {
-    private const ID_NOT_FOUND = 'Group with id %s not found';
+    private const ID_NOT_FOUND = 'Group with id %s not found.';
 
     public static function fromId(string $groupId): self
     {

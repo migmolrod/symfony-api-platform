@@ -3,7 +3,8 @@
 namespace App\Repository;
 
 use Doctrine\DBAL\Connection;
-use Doctrine\DBAL\Driver\Exception;
+use Doctrine\DBAL\Driver\Exception as DoctrineDbalDriverException;
+use Doctrine\DBAL\Exception as DoctrineDbalException;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
@@ -25,12 +26,26 @@ abstract class BaseRepository
         $this->objectRepository = $this->getEntityManager()->getRepository($this::entityClass());
     }
 
+    /**
+     * @return ObjectManager|EntityManager
+     */
+    public function getEntityManager(): ObjectManager
+    {
+        $entityManager = $this->managerRegistry->getManager();
+
+        if ($entityManager->isOpen()) {
+            return $entityManager;
+        }
+
+        return $this->managerRegistry->resetManager();
+    }
+
     abstract protected static function entityClass(): string;
 
     /**
      * @throws ORMException
      */
-    public function persistEntity(object $entity): void
+    protected function persistEntity(object $entity): void
     {
         $this->getEntityManager()->persist($entity);
     }
@@ -40,7 +55,7 @@ abstract class BaseRepository
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function flushData(): void
+    protected function flushData(): void
     {
         $this->getEntityManager()->flush();
         $this->getEntityManager()->clear();
@@ -50,7 +65,7 @@ abstract class BaseRepository
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function saveEntity(object $entity): void
+    protected function saveEntity(object $entity): void
     {
         $this->getEntityManager()->persist($entity);
         $this->getEntityManager()->flush();
@@ -60,15 +75,15 @@ abstract class BaseRepository
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function removeEntity(object $entity): void
+    protected function removeEntity(object $entity): void
     {
         $this->getEntityManager()->remove($entity);
         $this->getEntityManager()->flush();
     }
 
     /**
-     * @throws Exception
-     * @throws \Doctrine\DBAL\Exception
+     * @throws DoctrineDbalDriverException
+     * @throws DoctrineDbalException
      */
     protected function executeFetchQuery(string $query, array $params = []): array
     {
@@ -76,24 +91,10 @@ abstract class BaseRepository
     }
 
     /**
-     * @throws \Doctrine\DBAL\Exception
+     * @throws DoctrineDbalException
      */
     protected function executeQuery(string $query, array $params = []): void
     {
         $this->connection->executeQuery($query, $params);
-    }
-
-    /**
-     * @return ObjectManager|EntityManager
-     */
-    private function getEntityManager(): ObjectManager
-    {
-        $entityManager = $this->managerRegistry->getManager();
-
-        if ($entityManager->isOpen()) {
-            return $entityManager;
-        }
-
-        return $this->managerRegistry->resetManager();
     }
 }

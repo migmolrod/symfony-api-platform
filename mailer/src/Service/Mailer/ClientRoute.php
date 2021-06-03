@@ -6,4 +6,5 @@ abstract class ClientRoute
 {
     public const ACTIVATE_ACCOUNT = '/activate-account';
     public const RESET_PASSWORD = '/reset-password';
+    public const GROUP_REQUEST = '/group-request';
 }

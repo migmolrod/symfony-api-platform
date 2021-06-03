@@ -33,6 +33,6 @@ class RequestResetPassword
             RequestService::getField($request, 'email'),
         );
 
-        return new JsonResponse(['message' => 'Request reset password email sent']);
+        return new JsonResponse(['message' => 'Request reset password email sent.']);
     }
 }
