@@ -33,7 +33,11 @@ security:
             methods: [POST]
             security: false
         activate_account:
-            pattern: ^/api/v1/users/(.*)/activate
+            pattern: ^/api/v1/users/.*/activate
+            methods: [PUT]
+            security: false
+        accept_request:
+            pattern: ^/api/v1/groups/.*/accept-request
             methods: [PUT]
             security: false
 

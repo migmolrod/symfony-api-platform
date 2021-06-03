@@ -7,8 +7,8 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class PasswordException extends BadRequestHttpException
 {
-    private const MIN_LENGTH = 'Password must be at least %s characters long';
-    private const OLD_PASSWORD_DOES_NOT_MATCH = 'Old password does not match';
+    private const MIN_LENGTH = 'Password must be at least %s characters long.';
+    private const OLD_PASSWORD_DOES_NOT_MATCH = 'Old password does not match.';
 
     public static function invalidLength(int $minimumLength): self
     {
