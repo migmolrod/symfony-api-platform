@@ -7,6 +7,7 @@ use App\Service\Request\RequestService;
 use JsonException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Throwable;
 
 class AcceptRequest
 {
@@ -19,6 +20,7 @@ class AcceptRequest
 
     /**
      * @throws JsonException
+     * @throws Throwable
      */
     public function __invoke(Request $request, string $id): JsonResponse
     {
