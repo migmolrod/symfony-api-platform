@@ -37,7 +37,7 @@ class AcceptRequestTest extends GroupTestBase
         $responseData = $this->getResponseData($response);
 
         self::assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
-        self::assertEquals('The user has been added to the group', $responseData['message']);
+        self::assertEquals('The user has been added to the group.', $responseData['message']);
     }
 
     /**

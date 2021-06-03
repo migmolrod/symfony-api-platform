@@ -29,6 +29,6 @@ class SendRequestToUser
     {
         $this->sendRequestToUserService->send($id, RequestService::getField($request, 'email'), $user->getId());
 
-        return new JsonResponse(['message' => 'The request has been sent']);
+        return new JsonResponse(['message' => 'The request has been sent.']);
     }
 }

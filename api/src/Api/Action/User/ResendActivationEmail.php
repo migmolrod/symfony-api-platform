@@ -30,6 +30,6 @@ class ResendActivationEmail
             RequestService::getField($request, 'email'),
         );
 
-        return new JsonResponse(['message' => 'Activation email sent']);
+        return new JsonResponse(['message' => 'Activation email sent.']);
     }
 }

@@ -30,6 +30,6 @@ class AcceptRequest
             RequestService::getField($request, 'token')
         );
 
-        return new JsonResponse(['message' => 'The user has been added to the group']);
+        return new JsonResponse(['message' => 'The user has been added to the group.']);
     }
 }

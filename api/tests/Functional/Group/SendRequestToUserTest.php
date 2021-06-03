@@ -36,7 +36,7 @@ class SendRequestToUserTest extends GroupTestBase
         $responseData = $this->getResponseData($response);
 
         self::assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
-        self::assertEquals('The request has been sent', $responseData['message']);
+        self::assertEquals('The request has been sent.', $responseData['message']);
     }
 
     /**
@@ -64,7 +64,7 @@ class SendRequestToUserTest extends GroupTestBase
         $responseData = $this->getResponseData($response);
 
         self::assertEquals(JsonResponse::HTTP_FORBIDDEN, $response->getStatusCode());
-        self::assertEquals('You are not the owner of this group', $responseData['message']);
+        self::assertEquals('You are not the owner of this group.', $responseData['message']);
     }
 
     /**
@@ -92,6 +92,6 @@ class SendRequestToUserTest extends GroupTestBase
         $responseData = $this->getResponseData($response);
 
         self::assertEquals(JsonResponse::HTTP_CONFLICT, $response->getStatusCode());
-        self::assertEquals('The user is already member of the group', $responseData['message']);
+        self::assertEquals('The user is already member of the group.', $responseData['message']);
     }
 }
