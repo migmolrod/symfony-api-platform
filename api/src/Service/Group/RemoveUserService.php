@@ -34,16 +34,16 @@ class RemoveUserService
         $user = $this->userRepository->findOneByIdOrFail($userId);
         $requester = $this->userRepository->findOneByIdOrFail($requesterId);
 
-        if (!$requester->equals($user) && !$group->isOwnedBy($requester)) {
-            throw new CannotRemoveAnotherUserIfNotOwnerException();
-        }
-
         if (!$user->isMemberOfGroup($group)) {
             throw new UserNotMemberOfGroupException();
         }
 
         if ($group->isOwnedBy($user)) {
             throw new CannotRemoveOwnerException();
+        }
+
+        if (!$requester->equals($user) && !$group->isOwnedBy($requester)) {
+            throw new CannotRemoveAnotherUserIfNotOwnerException();
         }
 
         $group->removeUser($user);
