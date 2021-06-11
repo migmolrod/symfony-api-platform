@@ -19,9 +19,9 @@ class RemoveUserTest extends GroupTestBase
      */
     public function testRemoveUser(): void
     {
+        $this->addBrianToPeterGroup();
         $brianId = $this->getBrianId();
         $peterGroupId = $this->getPeterGroupId();
-        $this->addBrianToPeterGroup();
         $payload = [
             'userId' => $brianId,
         ];
@@ -49,9 +49,9 @@ class RemoveUserTest extends GroupTestBase
      */
     public function testRemoveSelfUser(): void
     {
+        $this->addBrianToPeterGroup();
         $brianId = $this->getBrianId();
         $peterGroupId = $this->getPeterGroupId();
-        $this->addBrianToPeterGroup();
         $payload = [
             'userId' => $brianId,
         ];
@@ -137,9 +137,9 @@ class RemoveUserTest extends GroupTestBase
      */
     public function testRemoveAnotherUser(): void
     {
+        $this->addBrianToPeterGroup();
         $brianId = $this->getBrianId();
         $peterGroupId = $this->getPeterGroupId();
-        $this->addBrianToPeterGroup();
         $payload = [
             'userId' => $brianId,
         ];
@@ -158,6 +158,35 @@ class RemoveUserTest extends GroupTestBase
 
         self::assertEquals(JsonResponse::HTTP_FORBIDDEN, $response->getStatusCode());
         self::assertEquals(CannotRemoveAnotherUserIfNotOwnerException::class, $responseData['class']);
+    }
+
+    /**
+     * @throws DoctrineDbalDriverException
+     * @throws DoctrineDbalException
+     * @throws JsonException
+     */
+    public function testRemoveOwner(): void
+    {
+        $peterId = $this->getPeterId();
+        $peterGroupId = $this->getPeterGroupId();
+        $payload = [
+            'userId' => $peterId,
+        ];
+
+        self::$roger->request(
+            'PUT',
+            sprintf('%s/%s/remove-user', $this->endpoint, $peterGroupId),
+            [],
+            [],
+            [],
+            json_encode($payload, JSON_THROW_ON_ERROR),
+        );
+
+        $response = self::$roger->getResponse();
+        $responseData = $this->getResponseData($response);
+
+        self::assertEquals(JsonResponse::HTTP_CONFLICT, $response->getStatusCode());
+        self::assertEquals(CannotRemoveOwnerException::class, $responseData['class']);
     }
 
     /**
