@@ -165,4 +165,92 @@ class TestBase extends WebTestCase
             "SELECT id FROM user_group WHERE name = 'Brian Group'"
         )->fetchOne();
     }
+
+    /**
+     * @throws DoctrineDbalDriverException
+     * @throws DoctrineDbalException
+     */
+    protected function getPeterExpenseCategoryId()
+    {
+        return $this->initDbConnection()->executeQuery(
+            "SELECT id FROM category WHERE name = 'Peter Expense Category'"
+        )->fetchOne();
+    }
+
+    /**
+     * @throws DoctrineDbalDriverException
+     * @throws DoctrineDbalException
+     */
+    protected function getPeterIncomeCategoryId()
+    {
+        return $this->initDbConnection()->executeQuery(
+            "SELECT id FROM category WHERE name = 'Peter Income Category'"
+        )->fetchOne();
+    }
+
+    /**
+     * @throws DoctrineDbalDriverException
+     * @throws DoctrineDbalException
+     */
+    protected function getPeterGroupExpenseCategoryId()
+    {
+        return $this->initDbConnection()->executeQuery(
+            "SELECT id FROM category WHERE name = 'Peter Group Expense Category'"
+        )->fetchOne();
+    }
+
+    /**
+     * @throws DoctrineDbalDriverException
+     * @throws DoctrineDbalException
+     */
+    protected function getPeterGroupIncomeCategoryId()
+    {
+        return $this->initDbConnection()->executeQuery(
+            "SELECT id FROM category WHERE name = 'Peter Group Income Category'"
+        )->fetchOne();
+    }
+
+    /**
+     * @throws DoctrineDbalDriverException
+     * @throws DoctrineDbalException
+     */
+    protected function getBrianExpenseCategoryId()
+    {
+        return $this->initDbConnection()->executeQuery(
+            "SELECT id FROM category WHERE name = 'Brian Expense Category'"
+        )->fetchOne();
+    }
+
+    /**
+     * @throws DoctrineDbalDriverException
+     * @throws DoctrineDbalException
+     */
+    protected function getBrianIncomeCategoryId()
+    {
+        return $this->initDbConnection()->executeQuery(
+            "SELECT id FROM category WHERE name = 'Brian Income Category'"
+        )->fetchOne();
+    }
+
+    /**
+     * @throws DoctrineDbalDriverException
+     * @throws DoctrineDbalException
+     */
+    protected function getBrianGroupExpenseCategoryId()
+    {
+        return $this->initDbConnection()->executeQuery(
+            "SELECT id FROM category WHERE name = 'Brian Group Expense Category'"
+        )->fetchOne();
+    }
+
+    /**
+     * @throws DoctrineDbalDriverException
+     * @throws DoctrineDbalException
+     */
+    protected function getBrianGroupIncomeCategoryId()
+    {
+        return $this->initDbConnection()->executeQuery(
+            "SELECT id FROM category WHERE name = 'Brian Group Income Category'"
+        )->fetchOne();
+    }
 }
