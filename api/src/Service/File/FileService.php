@@ -37,7 +37,7 @@ class FileService
         $filename = sprintf(
             '%s/%s.%s',
             $prefix,
-            UidGenerator::generateUid(),
+            UidGenerator::generateToken(),
             $file->guessExtension()
         );
 

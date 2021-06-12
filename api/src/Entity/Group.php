@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
+use App\Service\Utils\UidGenerator;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Uid\Uuid;
 
 class Group
 {
@@ -19,7 +19,7 @@ class Group
 
     public function __construct(string $name, User $owner)
     {
-        $this->id = Uuid::v4()->toRfc4122();
+        $this->id = UidGenerator::generateId();
         $this->name = $name;
         $this->owner = $owner;
         $this->createdAt = new DateTime();

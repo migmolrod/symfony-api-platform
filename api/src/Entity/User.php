@@ -9,7 +9,6 @@ use Doctrine\Common\Collections\Collection;
 use function filter_var;
 use LogicException;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Uid\Uuid;
 
 class User implements UserInterface
 {
@@ -27,7 +26,7 @@ class User implements UserInterface
 
     public function __construct(string $name, string $email)
     {
-        $this->id = Uuid::v4()->toRfc4122();
+        $this->id = UidGenerator::generateId();
         $this->name = $name;
         $this->setEmail($email);
         $this->password = null;
@@ -154,12 +153,12 @@ class User implements UserInterface
 
     public function refreshToken(): void
     {
-        $this->token = UidGenerator::generateUid();
+        $this->token = UidGenerator::generateToken();
     }
 
     public function refreshResetPasswordToken(): void
     {
-        $this->resetPasswordToken = UidGenerator::generateUid();
+        $this->resetPasswordToken = UidGenerator::generateToken();
     }
 
     /**

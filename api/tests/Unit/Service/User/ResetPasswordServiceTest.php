@@ -26,7 +26,7 @@ class ResetPasswordServiceTest extends UserServiceTestBase
      */
     public function testResetPassword(): void
     {
-        $resetPasswordToken = UidGenerator::generateUid();
+        $resetPasswordToken = UidGenerator::generateToken();
         $password = 'newPassword123';
         $user = new User('username', 'username@api.com');
 
@@ -48,7 +48,7 @@ class ResetPasswordServiceTest extends UserServiceTestBase
      */
     public function testResetPasswordForNonExistingUser(): void
     {
-        $resetPasswordToken = UidGenerator::generateUid();
+        $resetPasswordToken = UidGenerator::generateToken();
         $password = 'newPassword123';
         $user = new User('non-existing', 'non-existing@api.com');
 
