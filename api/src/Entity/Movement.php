@@ -6,7 +6,7 @@ use App\Service\Utils\UidGenerator;
 use DateTime;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class Activity
+class Movement
 {
     private string $id;
     private Category $category;
