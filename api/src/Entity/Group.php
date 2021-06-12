@@ -16,6 +16,7 @@ class Group
     private DateTime $createdAt;
     private DateTime $updatedAt;
     private Collection $users;
+    private Collection $categories;
 
     public function __construct(string $name, User $owner)
     {
@@ -26,6 +27,7 @@ class Group
         $this->markAsUpdated();
         $this->users = new ArrayCollection([$owner]);
         $owner->addGroup($this);
+        $this->categories = new ArrayCollection();
     }
 
     public function getId(): string
@@ -98,5 +100,13 @@ class Group
     public function isOwnedBy($user): bool
     {
         return $this->owner->equals($user);
+    }
+
+    /**
+     * @return Collection|Category[]
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
     }
 }
