@@ -18,16 +18,19 @@
     background-color: var(--green-transp);
     color: var(--green);
 }
+
 #swagger-ui.api-platform .opblock.opblock-post .opblock-summary-method,
 #swagger-ui.api-platform .opblock.opblock-post .opblock-section-header {
     background-color: var(--orange-transp);
     color: var(--orange);
 }
+
 #swagger-ui.api-platform .opblock.opblock-put .opblock-summary-method,
 #swagger-ui.api-platform .opblock.opblock-put .opblock-section-header {
     background-color: var(--blue-transp);
     color: var(--blue);
 }
+
 #swagger-ui.api-platform .opblock.opblock-delete .opblock-summary-method,
 #swagger-ui.api-platform .opblock.opblock-delete .opblock-section-header {
     background-color: var(--red-transp);
@@ -37,12 +40,15 @@
 #swagger-ui.api-platform .opblock.opblock-get .opblock-title span:after {
     background-color: var(--green);
 }
+
 #swagger-ui.api-platform .opblock.opblock-post .opblock-title span:after {
     background-color: var(--orange);
 }
+
 #swagger-ui.api-platform .opblock.opblock-put .opblock-title span:after {
     background-color: var(--blue);
 }
+
 #swagger-ui.api-platform .opblock.opblock-delete .opblock-title span:after {
     background-color: var(--red);
 }
@@ -50,12 +56,15 @@
 #swagger-ui.api-platform .opblock.opblock-get.is-open .opblock-summary {
     border-bottom: 1px solid var(--green);
 }
+
 #swagger-ui.api-platform .opblock.opblock-post.is-open .opblock-summary {
     border-bottom: 1px solid var(--orange);
 }
+
 #swagger-ui.api-platform .opblock.opblock-put.is-open .opblock-summary {
     border-bottom: 1px solid var(--blue);
 }
+
 #swagger-ui.api-platform .opblock.opblock-delete.is-open .opblock-summary {
     border-bottom: 1px solid var(--red);
 }

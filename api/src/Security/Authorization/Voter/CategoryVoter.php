@@ -20,6 +20,16 @@ class CategoryVoter extends Voter
         return in_array($attribute, $this->supportedAttributes(), true);
     }
 
+    private function supportedAttributes(): array
+    {
+        return [
+            self::CATEGORY_CREATE,
+            self::CATEGORY_READ,
+            self::CATEGORY_UPDATE,
+            self::CATEGORY_DELETE,
+        ];
+    }
+
     /**
      * @param Category|null $subject
      */
@@ -39,15 +49,5 @@ class CategoryVoter extends Voter
         }
 
         return false;
-    }
-
-    private function supportedAttributes(): array
-    {
-        return [
-            self::CATEGORY_CREATE,
-            self::CATEGORY_READ,
-            self::CATEGORY_UPDATE,
-            self::CATEGORY_DELETE,
-        ];
     }
 }

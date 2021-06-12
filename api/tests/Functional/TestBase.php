@@ -56,8 +56,7 @@ class TestBase extends WebTestCase
         $token = $this
             ->getContainer()
             ->get(JWTTokenManagerInterface::class)
-            ->create($user)
-        ;
+            ->create($user);
         $client->setServerParameters([
             'HTTP_Authorization' => sprintf('Bearer %s', $token),
             'CONTENT_TYPE' => 'application/json',
@@ -73,11 +72,6 @@ class TestBase extends WebTestCase
         return json_decode($response->getContent(), true, 512, JSON_THROW_ON_ERROR);
     }
 
-    protected function initDbConnection(): Connection
-    {
-        return $this->getContainer()->get('doctrine')->getConnection();
-    }
-
     /**
      * @throws DoctrineDbalDriverException
      * @throws DoctrineDbalException
@@ -87,6 +81,11 @@ class TestBase extends WebTestCase
         return $this->initDbConnection()->executeQuery(
             "SELECT id FROM user WHERE email = 'peter@api.com'"
         )->fetchOne();
+    }
+
+    protected function initDbConnection(): Connection
+    {
+        return $this->getContainer()->get('doctrine')->getConnection();
     }
 
     /**

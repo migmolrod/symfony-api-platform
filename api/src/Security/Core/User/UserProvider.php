@@ -41,15 +41,6 @@ class UserProvider implements UserProviderInterface, PasswordUpgraderInterface
         $this->userRepository->save($user);
     }
 
-    public function loadUserByUsername(string $username): UserInterface
-    {
-        try {
-            return $this->userRepository->findOneByEmailOrFail($username);
-        } catch (UserNotFoundException $userNotFoundException) {
-            throw new UsernameNotFoundException(sprintf('User %s not found', $username));
-        }
-    }
-
     public function refreshUser(UserInterface $user): UserInterface
     {
         if (!$user instanceof User) {
@@ -57,6 +48,15 @@ class UserProvider implements UserProviderInterface, PasswordUpgraderInterface
         }
 
         return $this->loadUserByUsername($user->getUsername());
+    }
+
+    public function loadUserByUsername(string $username): UserInterface
+    {
+        try {
+            return $this->userRepository->findOneByEmailOrFail($username);
+        } catch (UserNotFoundException $userNotFoundException) {
+            throw new UsernameNotFoundException(sprintf('User %s not found', $username));
+        }
     }
 
     public function supportsClass(string $class): bool

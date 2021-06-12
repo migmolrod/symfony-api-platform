@@ -30,6 +30,11 @@ class Group
         $this->categories = new ArrayCollection();
     }
 
+    public function markAsUpdated(): void
+    {
+        $this->updatedAt = new DateTime();
+    }
+
     public function getId(): string
     {
         return $this->id;
@@ -58,11 +63,6 @@ class Group
     public function getUpdatedAt(): DateTime
     {
         return $this->updatedAt;
-    }
-
-    public function markAsUpdated(): void
-    {
-        $this->updatedAt = new DateTime();
     }
 
     /**

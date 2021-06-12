@@ -41,9 +41,14 @@ class User implements UserInterface
         $this->categories = new ArrayCollection();
     }
 
-    public function getId(): string
+    public function refreshToken(): void
     {
-        return $this->id;
+        $this->token = UidGenerator::generateToken();
+    }
+
+    public function markAsUpdated(): void
+    {
+        $this->updatedAt = new DateTime();
     }
 
     public function getName(): string
@@ -130,11 +135,6 @@ class User implements UserInterface
         return $this->updatedAt;
     }
 
-    public function markAsUpdated(): void
-    {
-        $this->updatedAt = new DateTime();
-    }
-
     public function getRoles(): array
     {
         return [];
@@ -153,11 +153,6 @@ class User implements UserInterface
     {
     }
 
-    public function refreshToken(): void
-    {
-        $this->token = UidGenerator::generateToken();
-    }
-
     public function refreshResetPasswordToken(): void
     {
         $this->resetPasswordToken = UidGenerator::generateToken();
@@ -169,6 +164,11 @@ class User implements UserInterface
     public function equals($user): bool
     {
         return $this->id === $user->getId();
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
     }
 
     /**

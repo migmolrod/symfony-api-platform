@@ -30,6 +30,11 @@ class Category
         $this->markAsUpdated();
     }
 
+    public function markAsUpdated(): void
+    {
+        $this->updatedAt = new DateTime();
+    }
+
     public function getId(): string
     {
         return $this->id;
@@ -68,11 +73,6 @@ class Category
     public function getUpdatedAt(): DateTime
     {
         return $this->updatedAt;
-    }
-
-    public function markAsUpdated(): void
-    {
-        $this->updatedAt = new DateTime();
     }
 
     /**
