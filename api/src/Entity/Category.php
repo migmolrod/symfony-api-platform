@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Service\Utils\UidGenerator;
 use DateTime;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 class Category
 {
@@ -72,5 +73,13 @@ class Category
     public function markAsUpdated(): void
     {
         $this->updatedAt = new DateTime();
+    }
+
+    /**
+     * @param UserInterface|User $user
+     */
+    public function isOwnedBy(User $user): bool
+    {
+        return $this->owner->equals($user);
     }
 }
