@@ -10,9 +10,9 @@ use App\Entity\User;
 use App\Exception\Group\GroupNotFoundException;
 use App\Repository\GroupRepository;
 use Doctrine\ORM\QueryBuilder;
+use function sprintf;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use function sprintf;
 
 class CurrentUserExtension implements QueryCollectionExtensionInterface
 {

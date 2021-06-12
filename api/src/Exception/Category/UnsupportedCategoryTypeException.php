@@ -2,8 +2,8 @@
 
 namespace App\Exception\Category;
 
-use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use function sprintf;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class UnsupportedCategoryTypeException extends BadRequestHttpException
 {
