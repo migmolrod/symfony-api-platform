@@ -6,6 +6,7 @@ use App\Exception\Group\CannotCreateGroupForAnotherUserException;
 use Doctrine\DBAL\Driver\Exception as DoctrineDbalDriverException;
 use Doctrine\DBAL\Exception as DoctrineDbalException;
 use JsonException;
+use function json_encode;
 use function sprintf;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
