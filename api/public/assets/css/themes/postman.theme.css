@@ -1,0 +1,54 @@
+/** COLOR VARIABLES **/
+
+:root {
+    --green-transp: rgba(12, 187, 82, .1);
+    --green: rgb(12, 187, 82);
+    --orange-transp: rgba(255, 180, 0, .1);
+    --orange: rgb(255, 180, 0);
+    --blue-transp: rgba(9, 123, 237, .1);
+    --blue: rgb(9, 123, 237);
+    --red-transp: rgba(235, 32, 19, .1);
+    --red: rgb(235, 32, 19);
+}
+
+/** CUSTOM COLORS TO MATCH POSTMAN **/
+
+#swagger-ui.api-platform .opblock.opblock-get .opblock-summary-method,
+#swagger-ui.api-platform .opblock.opblock-get .opblock-section-header {
+    background-color: var(--green-transp);
+    color: var(--green);
+}
+
+#swagger-ui.api-platform .opblock.opblock-post .opblock-summary-method,
+#swagger-ui.api-platform .opblock.opblock-post .opblock-section-header {
+    background-color: var(--orange-transp);
+    color: var(--orange);
+}
+
+#swagger-ui.api-platform .opblock.opblock-put .opblock-summary-method,
+#swagger-ui.api-platform .opblock.opblock-put .opblock-section-header {
+    background-color: var(--blue-transp);
+    color: var(--blue);
+}
+
+#swagger-ui.api-platform .opblock.opblock-delete .opblock-summary-method,
+#swagger-ui.api-platform .opblock.opblock-delete .opblock-section-header {
+    background-color: var(--red-transp);
+    color: var(--red);
+}
+
+#swagger-ui.api-platform .opblock.opblock-get .opblock-title span:after {
+    background-color: var(--green);
+}
+
+#swagger-ui.api-platform .opblock.opblock-post .opblock-title span:after {
+    background-color: var(--orange);
+}
+
+#swagger-ui.api-platform .opblock.opblock-put .opblock-title span:after {
+    background-color: var(--blue);
+}
+
+#swagger-ui.api-platform .opblock.opblock-delete .opblock-title span:after {
+    background-color: var(--red);
+}
