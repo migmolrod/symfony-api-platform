@@ -109,4 +109,9 @@ class Group
     {
         return $this->categories;
     }
+
+    public function equals(Group $group): bool
+    {
+        return $this->id === $group->getId();
+    }
 }
