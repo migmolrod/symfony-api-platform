@@ -1,4 +1,4 @@
 flysystem:
-    storages:
-        cdn.storage:
-            adapter: 'memory'
+  storages:
+    cdn.storage:
+      adapter: 'memory'

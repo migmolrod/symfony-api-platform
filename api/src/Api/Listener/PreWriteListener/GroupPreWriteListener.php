@@ -27,6 +27,7 @@ class GroupPreWriteListener implements PreWriteListener
             : null;
 
         $request = $viewEvent->getRequest();
+
         if (self::GROUP_POST === $request->get('_route')) {
             /** @var Group $group */
             $group = $viewEvent->getControllerResult();

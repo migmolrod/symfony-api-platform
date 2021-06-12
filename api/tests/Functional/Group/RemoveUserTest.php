@@ -43,6 +43,31 @@ class RemoveUserTest extends GroupTestBase
     }
 
     /**
+     * @throws DoctrineDbalDriverException
+     * @throws DoctrineDbalException
+     * @throws JsonException
+     */
+    private function addBrianToPeterGroup(): void
+    {
+        $brianId = $this->getBrianId();
+        $peterGroupId = $this->getPeterGroupId();
+        $payload = [
+            'userId' => $brianId,
+            'token' => '2345678',
+        ];
+
+        self::$peter->request(
+            'PUT',
+            sprintf('%s/%s/accept-request', $this->endpoint, $peterGroupId),
+            [],
+            [],
+            [],
+            json_encode($payload, JSON_THROW_ON_ERROR),
+        );
+        self::$peter->getResponse();
+    }
+
+    /**
      * @throws JsonException
      * @throws DoctrineDbalException
      * @throws DoctrineDbalDriverException
@@ -187,30 +212,5 @@ class RemoveUserTest extends GroupTestBase
 
         self::assertEquals(JsonResponse::HTTP_CONFLICT, $response->getStatusCode());
         self::assertEquals(CannotRemoveOwnerException::class, $responseData['class']);
-    }
-
-    /**
-     * @throws DoctrineDbalDriverException
-     * @throws DoctrineDbalException
-     * @throws JsonException
-     */
-    private function addBrianToPeterGroup(): void
-    {
-        $brianId = $this->getBrianId();
-        $peterGroupId = $this->getPeterGroupId();
-        $payload = [
-            'userId' => $brianId,
-            'token' => '2345678',
-        ];
-
-        self::$peter->request(
-            'PUT',
-            sprintf('%s/%s/accept-request', $this->endpoint, $peterGroupId),
-            [],
-            [],
-            [],
-            json_encode($payload, JSON_THROW_ON_ERROR),
-        );
-        self::$peter->getResponse();
     }
 }

@@ -27,6 +27,11 @@ class GroupRequest
         $this->acceptedAt = null;
     }
 
+    public function refreshToken(): void
+    {
+        $this->token = UidGenerator::generateToken();
+    }
+
     public function getId(): string
     {
         return $this->id;
@@ -65,11 +70,6 @@ class GroupRequest
     public function getAcceptedAt(): ?DateTime
     {
         return $this->acceptedAt;
-    }
-
-    public function refreshToken(): void
-    {
-        $this->token = UidGenerator::generateToken();
     }
 
     public function markAsAccepted(): void

@@ -1,246 +1,219 @@
 App\Entity\User:
-    attributes:
-        normalization_context:
-            groups: [user_read]
-    collectionOperations:
-        register:
-            method: POST
-            path: /users/register
-            controller: App\Api\Action\User\UserRegister
-            denormalization_context:
-                groups: [user_register]
-            openapi_context:
-                summary: Register a new User
-        resend_activation_email:
-            method: POST
-            path: /users/resend-activation-email
-            controller: App\Api\Action\User\ResendActivationEmail
-            deserialize: false
-            openapi_context:
-                summary: Resends activation email for inactive user
-                requestBody:
-                    content:
-                        application/json:
-                            schema:
-                                type: object
-                                properties:
-                                    email:
-                                        type: string
-                                        required: true
-                responses:
-                    200:
-                        description: OK
-                        content:
-                            application/json:
-                                schema:
-                                    type: object
-                                    properties:
-                                        message:
-                                            type: string
-        login:
-            method: POST
-            route_name: api_login_check
-            openapi_context:
-                summary: Logs in an user in the API
-                requestBody:
-                    content:
-                        application/json:
-                            schema:
-                                type: object
-                                properties:
-                                    username:
-                                        type: string
-                                    password:
-                                        type: string
-                responses:
-                    200:
-                        description: OK
-                        content:
-                            application/json:
-                                schema:
-                                    type: object
-                                    properties:
-                                        token:
-                                            type: string
-        request_reset_password:
-            method: POST
-            path: /users/request-reset-password
-            controller: App\Api\Action\User\RequestResetPassword
-            deserialize: false
-            openapi_context:
-                summary: Requests an email with a reset password link
-                requestBody:
-                    content:
-                        application/json:
-                            schema:
-                                type: object
-                                properties:
-                                    email:
-                                        type: string
-                                        required: true
-                responses:
-                    200:
-                        description: OK
-                        content:
-                            application/json:
-                                schema:
-                                    type: object
-                                    properties:
-                                        message:
-                                            type: string
-        reset_password:
-            method: POST
-            path: /users/reset-password
-            controller: App\Api\Action\User\ResetPassword
-            deserialize: false
-            openapi_context:
-                summary: Resets user password
-                requestBody:
-                    content:
-                        application/json:
-                            schema:
-                                type: object
-                                properties:
-                                    userId:
-                                        type: string
-                                        required: true
-                                    resetPasswordToken:
-                                        type: string
-                                        required: true
-                                    password:
-                                        type: string
-                                        required: true
-                responses:
-                    200:
-                        description: OK
-                        content:
-                            application/json:
-                                schema:
-                                    type: object
-                                    properties:
-                                        User:
-                                            type: object
-        upload_avatar:
-            method: POST
-            path: /users/{id}/avatar
-            controller: App\Api\Action\User\UploadAvatar
-            deserialize: false
-            openapi_context:
-                summary: Uploads the user avatar
-                requestBody:
-                    content:
-                        multipart/form-data:
-                            schema:
-                                type: object
-                                properties:
-                                    avatar:
-                                        type: string
-                                        format: binary
-        facebook_auth:
-            method: POST
-            path: /users/facebook/auth
-            controller: App\Api\Action\Facebook\Authorization
-            deserialize: false
-            openapi_context:
-                summary: OAuth authorization with Facebook
-                requestBody:
-                    content:
-                        application/json:
-                            schema:
-                                type: object
-                                properties:
-                                    accessToken:
-                                        type: string
-                                        required: true
-                responses:
-                    200:
-                        description: OK
-                        content:
-                            application/json:
-                                schema:
-                                    type: object
-                                    properties:
-                                        token:
-                                            type: string
+  attributes:
+    normalization_context:
+      groups: [ user_read ]
+  collectionOperations:
+    register:
+      method: POST
+      path: /users/register
+      controller: App\Api\Action\User\UserRegister
+      denormalization_context:
+        groups: [ user_register ]
+      openapi_context:
+        summary: Registers a new User
+    resend_activation_email:
+      method: POST
+      path: /users/resend-activation-email
+      controller: App\Api\Action\User\ResendActivationEmail
+      deserialize: false
+      openapi_context:
+        summary: Resends activation email for inactive User
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  email:
+                    type: string
+                    required: true
+        responses:
+          200:
+            description: OK
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+    login:
+      method: POST
+      route_name: api_login_check
+      openapi_context:
+        summary: Logs in an User in the API
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  username:
+                    type: string
+                  password:
+                    type: string
+        responses:
+          200:
+            description: OK
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    token:
+                      type: string
+    request_reset_password:
+      method: POST
+      path: /users/request-reset-password
+      controller: App\Api\Action\User\RequestResetPassword
+      deserialize: false
+      openapi_context:
+        summary: Requests an email with a reset password link
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  email:
+                    type: string
+                    required: true
+        responses:
+          200:
+            description: OK
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+    upload_avatar:
+      method: POST
+      path: /users/{id}/avatar
+      controller: App\Api\Action\User\UploadAvatar
+      deserialize: false
+      openapi_context:
+        summary: Uploads the User avatar
+        requestBody:
+          content:
+            multipart/form-data:
+              schema:
+                type: object
+                properties:
+                  avatar:
+                    type: string
+                    format: binary
+    facebook_auth:
+      method: POST
+      path: /users/facebook/auth
+      controller: App\Api\Action\Facebook\Authorization
+      deserialize: false
+      openapi_context:
+        summary: OAuth authorization with Facebook
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessToken:
+                    type: string
+                    required: true
+        responses:
+          200:
+            description: OK
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    token:
+                      type: string
 
-    itemOperations:
-        get:
-            method: GET
-            security: is_granted("USER_READ", object)
-        put:
-            method: PUT
-            security: is_granted("USER_UPDATE", object)
-            denormalization_context:
-                groups: [user_update]
-        delete:
-            method: DELETE
-            security: is_granted("USER_DELETE", object)
-        activate:
-            method: PUT
-            path: /users/{id}/activate
-            controller: App\Api\Action\User\ActivateAccount
-            deserialize: false
-            denormalization_contest:
-                groups: [user_activate]
-            openapi_context:
-                summary: Activates user
-                requestBody:
-                    content:
-                        application/json:
-                            schema:
-                                type: object
-                                properties:
-                                    token:
-                                        type: string
-                                        required: true
-        reset_password:
-            method: PUT
-            path: /users/{id}/reset-password
-            controller: App\Api\Action\User\ResetPassword
-            deserialize: false
-            openapi_context:
-                summary: Resets user password
-                requestBody:
-                    content:
-                        application/json:
-                            schema:
-                                type: object
-                                properties:
-                                    resetPasswordToken:
-                                        type: string
-                                        required: true
-                                    password:
-                                        type: string
-                                        required: true
-                responses:
-                    200:
-                        description: OK
-                        content:
-                            application/ld+json:
-                                schema:
-                                    $ref: '#/components/schemas/User:jsonld-user_read'
-        change_password:
-            method: PUT
-            path: /users/{id}/change-password
-            controller: App\Api\Action\User\ChangePassword
-            deserialize: false
-            openapi_context:
-                summary: Changes user password
-                requestBody:
-                    content:
-                        application/json:
-                            schema:
-                                type: object
-                                properties:
-                                    oldPassword:
-                                        type: string
-                                        required: true
-                                    newPassword:
-                                        type: string
-                                        required: true
-    properties:
-        groups:
-            subresource:
-                resourceClass: App\Entity\Group
-                collection: true
-                maxDepth: 1
+  itemOperations:
+    get:
+      method: GET
+      security: is_granted("USER_READ", object)
+    put:
+      method: PUT
+      security: is_granted("USER_UPDATE", object)
+      denormalization_context:
+        groups: [ user_update ]
+    delete:
+      method: DELETE
+      security: is_granted("USER_DELETE", object)
+    activate:
+      method: PUT
+      path: /users/{id}/activate
+      controller: App\Api\Action\User\ActivateAccount
+      deserialize: false
+      denormalization_contest:
+        groups: [ user_activate ]
+      openapi_context:
+        summary: Activates User
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    required: true
+    reset_password:
+      method: PUT
+      path: /users/{id}/reset-password
+      controller: App\Api\Action\User\ResetPassword
+      deserialize: false
+      openapi_context:
+        summary: Resets User password
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  resetPasswordToken:
+                    type: string
+                    required: true
+                  password:
+                    type: string
+                    required: true
+        responses:
+          200:
+            description: OK
+            content:
+              application/ld+json:
+                schema:
+                  $ref: '#/components/schemas/User:jsonld-user_read'
+    change_password:
+      method: PUT
+      path: /users/{id}/change-password
+      controller: App\Api\Action\User\ChangePassword
+      deserialize: false
+      openapi_context:
+        summary: Changes User password
+        requestBody:
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  oldPassword:
+                    type: string
+                    required: true
+                  newPassword:
+                    type: string
+                    required: true
+  properties:
+    groups:
+      subresource:
+        resourceClass: App\Entity\Group
+        collection: true
+        maxDepth: 1
+    categories:
+      subresource:
+        resourceClass: App\Entity\Category
+        collection: true
+        maxDepth: 1

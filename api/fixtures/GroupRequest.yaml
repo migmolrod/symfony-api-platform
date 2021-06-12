@@ -1,6 +1,6 @@
 App\Entity\GroupRequest:
-    GroupRequest-0:
-        __construct:
-            group: '@Group-0'
-            user: '@User-1'
-        token: '2345678'
+  GroupRequest-0:
+    __construct:
+      group: '@Group-0'
+      user: '@User-1'
+    token: '2345678'
