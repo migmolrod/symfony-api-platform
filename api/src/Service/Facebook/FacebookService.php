@@ -66,7 +66,7 @@ class FacebookService
     private function createUserFromFacebookData(string $name, string $email): User
     {
         $user = new User($name, $email);
-        $user->setPassword($this->encoderService->generateEncodedPassword($user, UidGenerator::generateUid()));
+        $user->setPassword($this->encoderService->generateEncodedPassword($user, UidGenerator::generateToken()));
         $user->setActive(true);
         $user->setToken(null);
 

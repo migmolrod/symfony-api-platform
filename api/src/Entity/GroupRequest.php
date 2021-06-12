@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use App\Service\Utils\UidGenerator;
 use DateTime;
-use Symfony\Component\Uid\Uuid;
 
 class GroupRequest
 {
@@ -20,7 +19,7 @@ class GroupRequest
 
     public function __construct(Group $group, User $user)
     {
-        $this->id = Uuid::v4()->toRfc4122();
+        $this->id = UidGenerator::generateId();
         $this->group = $group;
         $this->user = $user;
         $this->refreshToken();
@@ -70,7 +69,7 @@ class GroupRequest
 
     public function refreshToken(): void
     {
-        $this->token = UidGenerator::generateUid();
+        $this->token = UidGenerator::generateToken();
     }
 
     public function markAsAccepted(): void

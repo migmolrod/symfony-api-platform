@@ -9,7 +9,6 @@ use App\Service\Utils\UidGenerator;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use function sprintf;
-use Symfony\Component\Uid\Uuid;
 
 class ActivateAccountServiceTest extends UserServiceTestBase
 {
@@ -29,8 +28,8 @@ class ActivateAccountServiceTest extends UserServiceTestBase
     public function testActivateAccount(): void
     {
         $user = new User('user1', 'user@api.com');
-        $id = Uuid::v4()->toRfc4122();
-        $token = UidGenerator::generateUid();
+        $id = UidGenerator::generateId();
+        $token = UidGenerator::generateToken();
 
         $this->userRepository
             ->expects(self::once())
@@ -51,8 +50,8 @@ class ActivateAccountServiceTest extends UserServiceTestBase
      */
     public function testForNonExistingUser(): void
     {
-        $id = Uuid::v4()->toRfc4122();
-        $token = UidGenerator::generateUid();
+        $id = UidGenerator::generateId();
+        $token = UidGenerator::generateToken();
 
         $this->userRepository
             ->expects(self::once())
