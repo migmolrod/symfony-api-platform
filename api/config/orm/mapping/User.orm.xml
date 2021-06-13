@@ -33,6 +33,12 @@
             </cascade>
         </one-to-many>
 
+        <one-to-many field="movements" target-entity="App\Entity\Movement" mapped-by="owner">
+            <cascade>
+                <cascade-remove/>
+            </cascade>
+        </one-to-many>
+
         <lifecycle-callbacks>
             <lifecycle-callback type="preUpdate" method="markAsUpdated"/>
         </lifecycle-callbacks>

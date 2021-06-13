@@ -252,4 +252,48 @@ class TestBase extends WebTestCase
             "SELECT id FROM category WHERE name = 'Brian Group Income Category'"
         )->fetchOne();
     }
+
+    /**
+     * @throws DoctrineDbalException
+     * @throws DoctrineDbalDriverException
+     */
+    protected function getPeterMovementId()
+    {
+        return $this->initDbConnection()->executeQuery(
+            "SELECT id FROM movement WHERE amount = 100"
+        )->fetchOne();
+    }
+
+    /**
+     * @throws DoctrineDbalException
+     * @throws DoctrineDbalDriverException
+     */
+    protected function getPeterGroupMovementId()
+    {
+        return $this->initDbConnection()->executeQuery(
+            "SELECT id FROM movement WHERE amount = 1000"
+        )->fetchOne();
+    }
+
+    /**
+     * @throws DoctrineDbalException
+     * @throws DoctrineDbalDriverException
+     */
+    protected function getBrianMovementId()
+    {
+        return $this->initDbConnection()->executeQuery(
+            "SELECT id FROM movement WHERE amount = 200"
+        )->fetchOne();
+    }
+
+    /**
+     * @throws DoctrineDbalException
+     * @throws DoctrineDbalDriverException
+     */
+    protected function getBrianGroupMovementId()
+    {
+        return $this->initDbConnection()->executeQuery(
+            "SELECT id FROM movement WHERE amount = 2000"
+        )->fetchOne();
+    }
 }

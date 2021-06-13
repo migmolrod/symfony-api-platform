@@ -6,13 +6,15 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Extension\QueryCollectionExtensionInter
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Util\QueryNameGeneratorInterface;
 use App\Entity\Category;
 use App\Entity\Group;
+use App\Entity\Movement;
 use App\Entity\User;
 use App\Exception\Group\GroupNotFoundException;
 use App\Repository\GroupRepository;
 use Doctrine\ORM\QueryBuilder;
-use function sprintf;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use function in_array;
+use function sprintf;
 
 class CurrentUserExtension implements QueryCollectionExtensionInterface
 {
@@ -58,7 +60,7 @@ class CurrentUserExtension implements QueryCollectionExtensionInterface
             throw new AccessDeniedHttpException(self::USER_DENIED);
         }
 
-        if (Category::class === $resourceClass) {
+        if (in_array($resourceClass, [Category::class, Movement::class], true)) {
             if ($this->isGroupAndUserIsMember($parameterId, $user)) {
                 $queryBuilder->andWhere(sprintf('%s.group = :parameterId', $rootAlias));
                 $queryBuilder->setParameter('parameterId', $parameterId);
@@ -81,6 +83,9 @@ class CurrentUserExtension implements QueryCollectionExtensionInterface
 
     private function getResources(): array
     {
-        return [Category::class => 'owner'];
+        return [
+            Category::class => 'owner',
+            Movement::class => 'owner',
+        ];
     }
 }
