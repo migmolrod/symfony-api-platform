@@ -82,4 +82,13 @@ class Category
     {
         return $this->owner->equals($user);
     }
+
+    public function belongsToGroup(Group $group): bool
+    {
+        if (null !== $this->group) {
+            return $this->group->equals($group);
+        }
+
+        return false;
+    }
 }
