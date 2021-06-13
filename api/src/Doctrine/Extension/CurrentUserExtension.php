@@ -11,10 +11,10 @@ use App\Entity\User;
 use App\Exception\Group\GroupNotFoundException;
 use App\Repository\GroupRepository;
 use Doctrine\ORM\QueryBuilder;
-use function in_array;
-use function sprintf;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use function in_array;
+use function sprintf;
 
 class CurrentUserExtension implements QueryCollectionExtensionInterface
 {
@@ -60,7 +60,7 @@ class CurrentUserExtension implements QueryCollectionExtensionInterface
             throw new AccessDeniedHttpException(self::USER_DENIED);
         }
 
-        if (in_array($resourceClass, $this->getResources(), true)) {
+        if (in_array($resourceClass, [Category::class, Movement::class], true)) {
             if ($this->isGroupAndUserIsMember($parameterId, $user)) {
                 $queryBuilder->andWhere(sprintf('%s.group = :parameterId', $rootAlias));
                 $queryBuilder->setParameter('parameterId', $parameterId);

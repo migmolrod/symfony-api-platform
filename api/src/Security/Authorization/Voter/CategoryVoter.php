@@ -3,12 +3,10 @@
 namespace App\Security\Authorization\Voter;
 
 use App\Entity\Category;
-use App\Entity\User;
 use function in_array;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Core\Authorization\Voter\Voter;
 
-class CategoryVoter extends Voter
+class CategoryVoter extends BaseUserAndGroupAwareVoter
 {
     public const CATEGORY_CREATE = 'CATEGORY_CREATE';
     public const CATEGORY_READ = 'CATEGORY_READ';
@@ -20,7 +18,7 @@ class CategoryVoter extends Voter
         return in_array($attribute, $this->supportedAttributes(), true);
     }
 
-    private function supportedAttributes(): array
+    protected function supportedAttributes(): array
     {
         return [
             self::CATEGORY_CREATE,
@@ -35,19 +33,6 @@ class CategoryVoter extends Voter
      */
     protected function voteOnAttribute(string $attribute, $subject, TokenInterface $token): bool
     {
-        /** @var User $user */
-        $user = $token->getUser();
-
-        if (self::CATEGORY_CREATE === $attribute) {
-            return true;
-        }
-        if ((null !== $group = $subject->getGroup()) && in_array($attribute, $this->supportedAttributes(), true)) {
-            return $user->isMemberOfGroup($group);
-        }
-        if (in_array($attribute, $this->supportedAttributes(), true)) {
-            return $subject->isOwnedBy($user);
-        }
-
-        return false;
+        return $this->checkUserAndGroup($attribute, $subject, $token, self::CATEGORY_CREATE);
     }
 }
