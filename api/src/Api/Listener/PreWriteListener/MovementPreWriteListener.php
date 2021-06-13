@@ -2,10 +2,9 @@
 
 namespace App\Api\Listener\PreWriteListener;
 
-use App\Entity\Category;
 use App\Entity\Movement;
 use App\Entity\User;
-use App\Exception\Category\CannotCreateCategoryForAnotherGroupException;
+use App\Exception\Movement\CannotCreateMovementForAnotherGroupException;
 use App\Exception\Movement\CannotCreateMovementForAnotherUserException;
 use App\Exception\Movement\CannotUseThisCategoryInMovementException;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
@@ -39,7 +38,7 @@ class MovementPreWriteListener implements PreWriteListener
 
             if (null !== $group = $movement->getGroup()) {
                 if (!$user->isMemberOfGroup($group)) {
-                    throw new CannotCreateCategoryForAnotherGroupException();
+                    throw new CannotCreateMovementForAnotherGroupException();
                 }
 
                 if (!$movement->getCategory()->belongsToGroup($group)) {
