@@ -5,9 +5,8 @@ namespace App\Tests\Functional\Group;
 use Doctrine\DBAL\Driver\Exception as DoctrineDbalDriverException;
 use Doctrine\DBAL\Exception as DoctrineDbalException;
 use JsonException;
-use Symfony\Component\HttpFoundation\Response;
 use function sprintf;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class SendRequestToUserTest extends GroupTestBase
 {

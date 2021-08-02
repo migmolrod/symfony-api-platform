@@ -5,11 +5,10 @@ namespace App\Tests\Functional\Group;
 use App\Exception\Group\CannotCreateGroupForAnotherUserException;
 use Doctrine\DBAL\Driver\Exception as DoctrineDbalDriverException;
 use Doctrine\DBAL\Exception as DoctrineDbalException;
-use Symfony\Component\HttpFoundation\Response;
 use function json_encode;
 use JsonException;
 use function sprintf;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class CreateGroupTest extends GroupTestBase
 {

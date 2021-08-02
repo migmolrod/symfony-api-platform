@@ -4,7 +4,6 @@ namespace App\Tests\Functional\Movement;
 
 use Doctrine\DBAL\Driver\Exception as DoctrineDbalDriverException;
 use Doctrine\DBAL\Exception as DoctrineDbalException;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 class DeleteMovementTest extends MovementTestBase

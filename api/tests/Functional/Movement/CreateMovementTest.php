@@ -7,10 +7,9 @@ use App\Exception\Movement\CannotCreateMovementForAnotherUserException;
 use App\Exception\Movement\CannotUseThisCategoryInMovementException;
 use Doctrine\DBAL\Driver\Exception as DoctrineDbalDriverException;
 use Doctrine\DBAL\Exception as DoctrineDbalException;
-use Symfony\Component\HttpFoundation\Response;
 use function json_encode;
 use JsonException;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class CreateMovementTest extends MovementTestBase
 {

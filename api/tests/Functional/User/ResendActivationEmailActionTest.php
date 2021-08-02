@@ -2,11 +2,10 @@
 
 namespace App\Tests\Functional\User;
 
-use Symfony\Component\HttpFoundation\Response;
 use function json_encode;
 use JsonException;
 use function sprintf;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class ResendActivationEmailActionTest extends UserTestBase
 {

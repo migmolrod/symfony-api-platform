@@ -4,10 +4,9 @@ namespace App\Tests\Functional\Movement;
 
 use Doctrine\DBAL\Driver\Exception as DoctrineDbalDriverException;
 use Doctrine\DBAL\Exception as DoctrineDbalException;
-use Symfony\Component\HttpFoundation\Response;
 use function json_encode;
 use JsonException;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class UpdateMovementTest extends MovementTestBase
 {
@@ -129,7 +128,7 @@ class UpdateMovementTest extends MovementTestBase
     public function testUpdateMovementWithInvalidCategory(): void
     {
         $payload = [
-            'category' => "/api/v1/categories/category-not-found",
+            'category' => '/api/v1/categories/category-not-found',
         ];
 
         self::$peter->request(

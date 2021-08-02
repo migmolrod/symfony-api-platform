@@ -3,7 +3,6 @@
 namespace App\Tests\Functional\User;
 
 use JsonException;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 
 class RegisterActionTest extends UserTestBase
