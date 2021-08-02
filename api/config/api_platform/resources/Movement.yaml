@@ -20,3 +20,19 @@ App\Entity\Movement:
     delete:
       method: DELETE
       security: is_granted("MOVEMENT_DELETE", object)
+    uploadFile:
+      method: POST
+      path: /movements/{id}/file
+      controller: App\Api\Action\Movement\UploadFile
+      deserialize: false
+      openapi_context:
+          summary: Upload and attach a file to a movement
+          requestBody:
+            content:
+              multipart/form-data:
+                schema:
+                  type: object
+                  properties:
+                    file:
+                      type: string
+                      format: binary

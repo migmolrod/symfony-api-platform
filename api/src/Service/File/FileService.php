@@ -17,6 +17,7 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 class FileService
 {
     public const AVATAR_INPUT_NAME = 'avatar';
+    public const MOVEMENT_INPUT_NAME = 'file';
 
     private FilesystemOperator $storage;
     private LoggerInterface $logger;
@@ -32,7 +33,7 @@ class FileService
     /**
      * @throws FilesystemException
      */
-    public function uploadFile(UploadedFile $file, string $prefix): string
+    public function uploadFile(UploadedFile $file, string $prefix, string $visibility): string
     {
         $filename = sprintf(
             '%s/%s.%s',
@@ -44,7 +45,7 @@ class FileService
         $this->storage->writeStream(
             $filename,
             fopen($file->getPathname(), 'rb'),
-            ['visibility' => Visibility::PUBLIC]
+            ['visibility' => $visibility]
         );
 
         return $filename;

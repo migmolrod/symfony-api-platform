@@ -6,6 +6,7 @@ use App\Service\File\FileService;
 use League\Flysystem\FilesystemException;
 use League\Flysystem\FilesystemOperator;
 use League\Flysystem\UnableToDeleteFile;
+use League\Flysystem\Visibility;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Log\LoggerInterface;
@@ -49,7 +50,7 @@ class FileServiceTest extends TestCase
             ->willReturn('png');
         $prefix = 'avatar';
 
-        $response = $this->service->uploadFile($uploadedFile, $prefix);
+        $response = $this->service->uploadFile($uploadedFile, $prefix, Visibility::PUBLIC);
 
         self::assertIsString($response);
     }
