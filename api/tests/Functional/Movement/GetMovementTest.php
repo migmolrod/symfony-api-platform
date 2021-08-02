@@ -6,6 +6,7 @@ use Doctrine\DBAL\Driver\Exception as DoctrineDbalDriverException;
 use Doctrine\DBAL\Exception as DoctrineDbalException;
 use JsonException;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class GetMovementTest extends MovementTestBase
 {
@@ -24,7 +25,7 @@ class GetMovementTest extends MovementTestBase
         $response = self::$peter->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
         self::assertEquals($this->getPeterMovementId(), $responseData['id']);
         self::assertEquals(100, $responseData['amount']);
     }
@@ -44,7 +45,7 @@ class GetMovementTest extends MovementTestBase
         $response = self::$peter->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
         self::assertEquals($this->getPeterGroupMovementId(), $responseData['id']);
         self::assertEquals(1000, $responseData['amount']);
     }
@@ -62,7 +63,7 @@ class GetMovementTest extends MovementTestBase
 
         $response = self::$brian->getResponse();
 
-        self::assertEquals(JsonResponse::HTTP_FORBIDDEN, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_FORBIDDEN, $response->getStatusCode());
     }
 
     /**
@@ -78,6 +79,6 @@ class GetMovementTest extends MovementTestBase
 
         $response = self::$brian->getResponse();
 
-        self::assertEquals(JsonResponse::HTTP_FORBIDDEN, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_FORBIDDEN, $response->getStatusCode());
     }
 }

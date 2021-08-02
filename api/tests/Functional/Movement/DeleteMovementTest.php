@@ -5,6 +5,7 @@ namespace App\Tests\Functional\Movement;
 use Doctrine\DBAL\Driver\Exception as DoctrineDbalDriverException;
 use Doctrine\DBAL\Exception as DoctrineDbalException;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class DeleteMovementTest extends MovementTestBase
 {
@@ -21,7 +22,7 @@ class DeleteMovementTest extends MovementTestBase
 
         $response = self::$peter->getResponse();
 
-        self::assertEquals(JsonResponse::HTTP_NO_CONTENT, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_NO_CONTENT, $response->getStatusCode());
     }
 
     /**
@@ -37,7 +38,7 @@ class DeleteMovementTest extends MovementTestBase
 
         $response = self::$peter->getResponse();
 
-        self::assertEquals(JsonResponse::HTTP_NO_CONTENT, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_NO_CONTENT, $response->getStatusCode());
     }
 
     /**
@@ -53,7 +54,7 @@ class DeleteMovementTest extends MovementTestBase
 
         $response = self::$peter->getResponse();
 
-        self::assertEquals(JsonResponse::HTTP_FORBIDDEN, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_FORBIDDEN, $response->getStatusCode());
     }
 
     /**
@@ -69,6 +70,6 @@ class DeleteMovementTest extends MovementTestBase
 
         $response = self::$peter->getResponse();
 
-        self::assertEquals(JsonResponse::HTTP_FORBIDDEN, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_FORBIDDEN, $response->getStatusCode());
     }
 }

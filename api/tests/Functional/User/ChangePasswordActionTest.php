@@ -3,6 +3,7 @@
 namespace App\Tests\Functional\User;
 
 use Doctrine\DBAL\Exception;
+use Symfony\Component\HttpFoundation\Response;
 use function json_encode;
 use JsonException;
 use function sprintf;
@@ -33,7 +34,7 @@ class ChangePasswordActionTest extends UserTestBase
 
         $response = self::$brian->getResponse();
 
-        self::assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
     }
 
     /**
@@ -59,6 +60,6 @@ class ChangePasswordActionTest extends UserTestBase
 
         $response = self::$peter->getResponse();
 
-        self::assertEquals(JsonResponse::HTTP_BAD_REQUEST, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
     }
 }

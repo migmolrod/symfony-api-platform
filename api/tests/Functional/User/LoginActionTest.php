@@ -2,6 +2,7 @@
 
 namespace App\Tests\Functional\User;
 
+use Symfony\Component\HttpFoundation\Response;
 use function json_encode;
 use JsonException;
 use Lexik\Bundle\JWTAuthenticationBundle\Response\JWTAuthenticationFailureResponse;
@@ -32,7 +33,7 @@ class LoginActionTest extends UserTestBase
 
         $response = self::$peter->getResponse();
 
-        self::assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
         self::assertInstanceOf(JWTAuthenticationSuccessResponse::class, $response);
     }
 
@@ -57,7 +58,7 @@ class LoginActionTest extends UserTestBase
 
         $response = self::$peter->getResponse();
 
-        self::assertEquals(JsonResponse::HTTP_UNAUTHORIZED, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_UNAUTHORIZED, $response->getStatusCode());
         self::assertInstanceOf(JWTAuthenticationFailureResponse::class, $response);
     }
 }

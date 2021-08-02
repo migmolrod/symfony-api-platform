@@ -2,6 +2,7 @@
 
 namespace App\Tests\Functional\User;
 
+use Symfony\Component\HttpFoundation\Response;
 use function json_encode;
 use JsonException;
 use function sprintf;
@@ -29,7 +30,7 @@ class ResendActivationEmailActionTest extends UserTestBase
 
         $response = self::$roger->getResponse();
 
-        self::assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
     }
 
     /**
@@ -52,7 +53,7 @@ class ResendActivationEmailActionTest extends UserTestBase
 
         $response = self::$peter->getResponse();
 
-        self::assertEquals(JsonResponse::HTTP_CONFLICT, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_CONFLICT, $response->getStatusCode());
     }
 
     /**
@@ -75,6 +76,6 @@ class ResendActivationEmailActionTest extends UserTestBase
 
         $response = self::$client->getResponse();
 
-        self::assertEquals(JsonResponse::HTTP_NOT_FOUND, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_NOT_FOUND, $response->getStatusCode());
     }
 }

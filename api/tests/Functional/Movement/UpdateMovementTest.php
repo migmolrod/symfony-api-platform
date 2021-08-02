@@ -4,6 +4,7 @@ namespace App\Tests\Functional\Movement;
 
 use Doctrine\DBAL\Driver\Exception as DoctrineDbalDriverException;
 use Doctrine\DBAL\Exception as DoctrineDbalException;
+use Symfony\Component\HttpFoundation\Response;
 use function json_encode;
 use JsonException;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -34,7 +35,7 @@ class UpdateMovementTest extends MovementTestBase
         $response = self::$peter->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
         self::assertEquals($payload['category'], $responseData['category']);
         self::assertEquals($payload['amount'], $responseData['amount']);
     }
@@ -63,7 +64,7 @@ class UpdateMovementTest extends MovementTestBase
         $response = self::$peter->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
         self::assertEquals($payload['category'], $responseData['category']);
         self::assertEquals($payload['amount'], $responseData['amount']);
     }
@@ -91,7 +92,7 @@ class UpdateMovementTest extends MovementTestBase
 
         $response = self::$peter->getResponse();
 
-        self::assertEquals(JsonResponse::HTTP_FORBIDDEN, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_FORBIDDEN, $response->getStatusCode());
     }
 
     /**
@@ -117,7 +118,7 @@ class UpdateMovementTest extends MovementTestBase
 
         $response = self::$peter->getResponse();
 
-        self::assertEquals(JsonResponse::HTTP_FORBIDDEN, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_FORBIDDEN, $response->getStatusCode());
     }
 
     /**
@@ -142,7 +143,7 @@ class UpdateMovementTest extends MovementTestBase
 
         $response = self::$peter->getResponse();
 
-        self::assertEquals(JsonResponse::HTTP_BAD_REQUEST, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
     }
 
     /**
@@ -168,6 +169,6 @@ class UpdateMovementTest extends MovementTestBase
 
         $response = self::$peter->getResponse();
 
-        self::assertEquals(JsonResponse::HTTP_BAD_REQUEST, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
     }
 }

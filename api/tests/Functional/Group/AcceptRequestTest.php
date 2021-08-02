@@ -7,6 +7,7 @@ use Doctrine\DBAL\Driver\Exception as DoctrineDbalDriverException;
 use Doctrine\DBAL\Exception as DoctrineDbalException;
 use JsonException;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class AcceptRequestTest extends GroupTestBase
 {
@@ -38,7 +39,7 @@ class AcceptRequestTest extends GroupTestBase
         $response = self::$client->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_NOT_FOUND, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_NOT_FOUND, $response->getStatusCode());
         self::assertEquals(GroupRequestNotFoundException::class, $responseData['class']);
     }
 
@@ -68,7 +69,7 @@ class AcceptRequestTest extends GroupTestBase
         $response = self::$client->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
         self::assertEquals('The user has been added to the group.', $responseData['message']);
     }
 }

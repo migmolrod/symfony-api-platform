@@ -4,6 +4,7 @@ namespace App\Tests\Functional\User;
 
 use Doctrine\DBAL\Driver\Exception as DoctrineDbalDriverException;
 use Doctrine\DBAL\Exception as DoctrineDbalException;
+use Symfony\Component\HttpFoundation\Response;
 use function sprintf;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
@@ -24,7 +25,7 @@ class DeleteUserTest extends UserTestBase
 
         $response = self::$peter->getResponse();
 
-        self::assertEquals(JsonResponse::HTTP_NO_CONTENT, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_NO_CONTENT, $response->getStatusCode());
     }
 
     /**
@@ -42,7 +43,7 @@ class DeleteUserTest extends UserTestBase
 
         $response = self::$brian->getResponse();
 
-        self::assertEquals(JsonResponse::HTTP_FORBIDDEN, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_FORBIDDEN, $response->getStatusCode());
     }
 
     public function testDeleteNonExistingUser(): void
@@ -56,6 +57,6 @@ class DeleteUserTest extends UserTestBase
 
         $response = self::$peter->getResponse();
 
-        self::assertEquals(JsonResponse::HTTP_NOT_FOUND, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_NOT_FOUND, $response->getStatusCode());
     }
 }

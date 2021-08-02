@@ -3,6 +3,7 @@
 namespace App\Tests\Functional\User;
 
 use Doctrine\DBAL\Driver\Exception;
+use Symfony\Component\HttpFoundation\Response;
 use function json_encode;
 use JsonException;
 use function sprintf;
@@ -36,7 +37,7 @@ class ResetPasswordActionTest extends UserTestBase
         $response = self::$peter->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
         self::assertEquals($peterId, $responseData['id']);
     }
 }

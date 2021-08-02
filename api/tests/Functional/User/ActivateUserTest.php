@@ -6,6 +6,7 @@ use Doctrine\DBAL\Driver\Exception as DoctrineDbalDriverException;
 use Doctrine\DBAL\Exception as DoctrineDbalException;
 use JsonException;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class ActivateUserTest extends UserTestBase
 {
@@ -34,7 +35,7 @@ class ActivateUserTest extends UserTestBase
         $response = self::$client->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
         self::assertEquals(true, $responseData['active']);
     }
 
@@ -62,7 +63,7 @@ class ActivateUserTest extends UserTestBase
 
         $response = self::$client->getResponse();
 
-        self::assertEquals(JsonResponse::HTTP_NOT_FOUND, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_NOT_FOUND, $response->getStatusCode());
     }
 
     /**
@@ -87,6 +88,6 @@ class ActivateUserTest extends UserTestBase
 
         $response = self::$client->getResponse();
 
-        self::assertEquals(JsonResponse::HTTP_NOT_FOUND, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_NOT_FOUND, $response->getStatusCode());
     }
 }
