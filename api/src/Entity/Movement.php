@@ -20,14 +20,14 @@ class Movement
     /**
      * Activity constructor.
      */
-    public function __construct(Category $category, User $owner, float $amount, Group $group = null)
+    public function __construct(Category $category, User $owner, float $amount, Group $group = null, string $filePath = null)
     {
         $this->id = UidGenerator::generateId();
         $this->category = $category;
         $this->owner = $owner;
         $this->group = $group;
         $this->amount = $amount;
-        $this->filePath = null;
+        $this->filePath = $filePath;
         $this->createdAt = new DateTime();
         $this->markAsUpdated();
     }
