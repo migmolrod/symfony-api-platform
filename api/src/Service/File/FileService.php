@@ -2,12 +2,12 @@
 
 namespace App\Service\File;
 
+use App\Exception\File\FileNotFoundException;
 use App\Service\Utils\UidGenerator;
 use Exception;
 use function fopen;
 use League\Flysystem\FilesystemException;
 use League\Flysystem\FilesystemOperator;
-use League\Flysystem\Visibility;
 use Psr\Log\LoggerInterface;
 use function sprintf;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -49,6 +49,15 @@ class FileService
         );
 
         return $filename;
+    }
+
+    public function downloadFile(string $path): ?string
+    {
+        try {
+            return $this->storage->read($path);
+        } catch (FilesystemException $exception) {
+            throw FileNotFoundException::fromPath($path);
+        }
     }
 
     /**

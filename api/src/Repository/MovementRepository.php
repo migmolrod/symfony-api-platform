@@ -23,7 +23,8 @@ class MovementRepository extends BaseRepository
         return $movement;
     }
 
-    public function findOneByFilePathOrFail(string $filePath): Movement {
+    public function findOneByFilePathOrFail(string $filePath): Movement
+    {
         if (null === $movement = $this->objectRepository->findOneBy(['filePath' => $filePath])) {
             throw MovementNotFoundException::fromFilePath($filePath);
         }

@@ -4,9 +4,9 @@ namespace App\Tests\Functional\Movement;
 
 use Doctrine\DBAL\Driver\Exception as DoctrineDbalDriverException;
 use Doctrine\DBAL\Exception as DoctrineDbalException;
+use function sprintf;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Response;
-use function sprintf;
 
 class UploadFileTest extends MovementTestBase
 {
