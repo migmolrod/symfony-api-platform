@@ -2,6 +2,8 @@ App\Entity\User:
   attributes:
     normalization_context:
       groups: [ user_read ]
+    filters:
+      - user.date_filter
   collectionOperations:
     register:
       method: POST
