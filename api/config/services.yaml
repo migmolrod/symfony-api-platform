@@ -1,3 +1,6 @@
+imports:
+  - { resource: api_platform/filter/date-filter.yaml }
+
 parameters:
 
 services:
@@ -51,10 +54,6 @@ services:
       tags:
         - { name: kernel.event_listener, event: kernel.view, method: onKernelView, priority: 33 }
 
-  # API Platform filters
-  user.date_filter:
-    parent: 'api_platform.doctrine.orm.date_filter'
-    arguments: [ { createdAt: exclude_null } ]
-    tags: [ 'api_platform.filter' ]
-    autowire: false
-    autoconfigure: false
+  # API Normalizer
+  App\Serializer\ApiNormalizer:
+    decorates: 'api_platform.jsonld.normalizer.item'

@@ -3,7 +3,7 @@ App\Entity\User:
     normalization_context:
       groups: [ user_read ]
     filters:
-      - user.date_filter
+      - api.filter.date_filter
   collectionOperations:
     register:
       method: POST
