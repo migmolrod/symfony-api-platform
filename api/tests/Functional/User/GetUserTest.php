@@ -5,7 +5,7 @@ namespace App\Tests\Functional\User;
 use Doctrine\DBAL\Driver\Exception as DoctrineDbalDriverException;
 use Doctrine\DBAL\Exception as DoctrineDbalException;
 use JsonException;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class GetUserTest extends UserTestBase
 {
@@ -26,7 +26,7 @@ class GetUserTest extends UserTestBase
         $response = self::$peter->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
         self::assertEquals($peterId, $responseData['id']);
         self::assertEquals('peter@api.com', $responseData['email']);
     }
@@ -46,7 +46,7 @@ class GetUserTest extends UserTestBase
 
         $response = self::$brian->getResponse();
 
-        self::assertEquals(JsonResponse::HTTP_FORBIDDEN, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_FORBIDDEN, $response->getStatusCode());
     }
 
     public function testGetNonExistingUser(): void
@@ -60,6 +60,6 @@ class GetUserTest extends UserTestBase
 
         $response = self::$peter->getResponse();
 
-        self::assertEquals(JsonResponse::HTTP_NOT_FOUND, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_NOT_FOUND, $response->getStatusCode());
     }
 }

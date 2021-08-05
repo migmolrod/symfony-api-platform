@@ -8,7 +8,7 @@ use App\Exception\Group\UserNotMemberOfGroupException;
 use Doctrine\DBAL\Driver\Exception as DoctrineDbalDriverException;
 use Doctrine\DBAL\Exception as DoctrineDbalException;
 use JsonException;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class RemoveUserTest extends GroupTestBase
 {
@@ -38,7 +38,7 @@ class RemoveUserTest extends GroupTestBase
         $response = self::$peter->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
         self::assertEquals('The user has been removed from the group.', $responseData['message']);
     }
 
@@ -93,7 +93,7 @@ class RemoveUserTest extends GroupTestBase
         $response = self::$brian->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
         self::assertEquals('The user has been removed from the group.', $responseData['message']);
     }
 
@@ -122,7 +122,7 @@ class RemoveUserTest extends GroupTestBase
         $response = self::$peter->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_CONFLICT, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_CONFLICT, $response->getStatusCode());
         self::assertEquals(UserNotMemberOfGroupException::class, $responseData['class']);
     }
 
@@ -151,7 +151,7 @@ class RemoveUserTest extends GroupTestBase
         $response = self::$peter->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_CONFLICT, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_CONFLICT, $response->getStatusCode());
         self::assertEquals(CannotRemoveOwnerException::class, $responseData['class']);
     }
 
@@ -181,7 +181,7 @@ class RemoveUserTest extends GroupTestBase
         $response = self::$roger->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_FORBIDDEN, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_FORBIDDEN, $response->getStatusCode());
         self::assertEquals(CannotRemoveAnotherUserIfNotOwnerException::class, $responseData['class']);
     }
 
@@ -210,7 +210,7 @@ class RemoveUserTest extends GroupTestBase
         $response = self::$roger->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_CONFLICT, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_CONFLICT, $response->getStatusCode());
         self::assertEquals(CannotRemoveOwnerException::class, $responseData['class']);
     }
 }

@@ -2,8 +2,8 @@
 
 namespace App\Exception\Movement;
 
-use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use function sprintf;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 
 class CannotUseThisCategoryInMovementException extends AccessDeniedHttpException
 {

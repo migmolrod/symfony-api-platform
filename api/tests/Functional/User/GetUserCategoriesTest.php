@@ -6,7 +6,7 @@ use Doctrine\DBAL\Driver\Exception as DoctrineDbalDriverException;
 use Doctrine\DBAL\Exception as DoctrineDbalException;
 use JsonException;
 use function sprintf;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class GetUserCategoriesTest extends UserTestBase
 {
@@ -27,7 +27,7 @@ class GetUserCategoriesTest extends UserTestBase
         $response = self::$peter->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
         self::assertCount(2, $responseData['hydra:member']);
     }
 
@@ -48,7 +48,7 @@ class GetUserCategoriesTest extends UserTestBase
         $response = self::$brian->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
         self::assertCount(0, $responseData['hydra:member']);
     }
 }

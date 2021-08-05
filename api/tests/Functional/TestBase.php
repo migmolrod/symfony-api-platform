@@ -260,7 +260,7 @@ class TestBase extends WebTestCase
     protected function getPeterMovementId()
     {
         return $this->initDbConnection()->executeQuery(
-            "SELECT id FROM movement WHERE amount = 100"
+            'SELECT id FROM movement WHERE amount = 100'
         )->fetchOne();
     }
 
@@ -271,7 +271,7 @@ class TestBase extends WebTestCase
     protected function getPeterGroupMovementId()
     {
         return $this->initDbConnection()->executeQuery(
-            "SELECT id FROM movement WHERE amount = 1000"
+            'SELECT id FROM movement WHERE amount = 1000'
         )->fetchOne();
     }
 
@@ -282,7 +282,7 @@ class TestBase extends WebTestCase
     protected function getBrianMovementId()
     {
         return $this->initDbConnection()->executeQuery(
-            "SELECT id FROM movement WHERE amount = 200"
+            'SELECT id FROM movement WHERE amount = 200'
         )->fetchOne();
     }
 
@@ -293,7 +293,7 @@ class TestBase extends WebTestCase
     protected function getBrianGroupMovementId()
     {
         return $this->initDbConnection()->executeQuery(
-            "SELECT id FROM movement WHERE amount = 2000"
+            'SELECT id FROM movement WHERE amount = 2000'
         )->fetchOne();
     }
 }

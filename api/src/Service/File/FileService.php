@@ -2,12 +2,12 @@
 
 namespace App\Service\File;
 
+use App\Exception\File\FileNotFoundException;
 use App\Service\Utils\UidGenerator;
 use Exception;
 use function fopen;
 use League\Flysystem\FilesystemException;
 use League\Flysystem\FilesystemOperator;
-use League\Flysystem\Visibility;
 use Psr\Log\LoggerInterface;
 use function sprintf;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -17,6 +17,7 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 class FileService
 {
     public const AVATAR_INPUT_NAME = 'avatar';
+    public const MOVEMENT_INPUT_NAME = 'file';
 
     private FilesystemOperator $storage;
     private LoggerInterface $logger;
@@ -32,7 +33,7 @@ class FileService
     /**
      * @throws FilesystemException
      */
-    public function uploadFile(UploadedFile $file, string $prefix): string
+    public function uploadFile(UploadedFile $file, string $prefix, string $visibility): string
     {
         $filename = sprintf(
             '%s/%s.%s',
@@ -44,10 +45,19 @@ class FileService
         $this->storage->writeStream(
             $filename,
             fopen($file->getPathname(), 'rb'),
-            ['visibility' => Visibility::PUBLIC]
+            ['visibility' => $visibility]
         );
 
         return $filename;
+    }
+
+    public function downloadFile(string $path): ?string
+    {
+        try {
+            return $this->storage->read($path);
+        } catch (FilesystemException $exception) {
+            throw FileNotFoundException::fromPath($path);
+        }
     }
 
     /**

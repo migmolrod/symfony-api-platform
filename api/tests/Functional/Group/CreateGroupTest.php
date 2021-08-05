@@ -8,7 +8,7 @@ use Doctrine\DBAL\Exception as DoctrineDbalException;
 use function json_encode;
 use JsonException;
 use function sprintf;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class CreateGroupTest extends GroupTestBase
 {
@@ -37,7 +37,7 @@ class CreateGroupTest extends GroupTestBase
         $response = self::$roger->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_CREATED, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_CREATED, $response->getStatusCode());
         self::assertEquals($payload['name'], $responseData['name']);
         self::assertEquals($payload['owner'], $responseData['owner']);
     }
@@ -67,7 +67,7 @@ class CreateGroupTest extends GroupTestBase
         $response = self::$peter->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_FORBIDDEN, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_FORBIDDEN, $response->getStatusCode());
         self::assertEquals(CannotCreateGroupForAnotherUserException::class, $responseData['class']);
     }
 }

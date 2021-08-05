@@ -9,7 +9,7 @@ use Doctrine\DBAL\Driver\Exception as DoctrineDbalDriverException;
 use Doctrine\DBAL\Exception as DoctrineDbalException;
 use function json_encode;
 use JsonException;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class CreateMovementTest extends MovementTestBase
 {
@@ -31,7 +31,7 @@ class CreateMovementTest extends MovementTestBase
         $response = self::$peter->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_CREATED, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_CREATED, $response->getStatusCode());
         self::assertEquals($payload['category'], $responseData['category']);
         self::assertEquals($payload['owner'], $responseData['owner']);
         self::assertEquals($payload['amount'], $responseData['amount']);
@@ -56,7 +56,7 @@ class CreateMovementTest extends MovementTestBase
         $response = self::$peter->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_FORBIDDEN, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_FORBIDDEN, $response->getStatusCode());
         self::assertEquals(CannotUseThisCategoryInMovementException::class, $responseData['class']);
     }
 
@@ -78,7 +78,7 @@ class CreateMovementTest extends MovementTestBase
         $response = self::$peter->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_FORBIDDEN, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_FORBIDDEN, $response->getStatusCode());
         self::assertEquals(CannotCreateMovementForAnotherUserException::class, $responseData['class']);
     }
 
@@ -99,7 +99,7 @@ class CreateMovementTest extends MovementTestBase
 
         $response = self::$peter->getResponse();
 
-        self::assertEquals(JsonResponse::HTTP_BAD_REQUEST, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
     }
 
     /**
@@ -121,7 +121,7 @@ class CreateMovementTest extends MovementTestBase
         $response = self::$peter->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_CREATED, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_CREATED, $response->getStatusCode());
         self::assertEquals($payload['category'], $responseData['category']);
         self::assertEquals($payload['owner'], $responseData['owner']);
         self::assertEquals($payload['group'], $responseData['group']);
@@ -147,7 +147,7 @@ class CreateMovementTest extends MovementTestBase
         $response = self::$peter->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_FORBIDDEN, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_FORBIDDEN, $response->getStatusCode());
         self::assertEquals(CannotUseThisCategoryInMovementException::class, $responseData['class']);
     }
 
@@ -170,7 +170,7 @@ class CreateMovementTest extends MovementTestBase
         $response = self::$peter->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_FORBIDDEN, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_FORBIDDEN, $response->getStatusCode());
         self::assertEquals(CannotCreateMovementForAnotherGroupException::class, $responseData['class']);
     }
 
@@ -193,7 +193,7 @@ class CreateMovementTest extends MovementTestBase
         $response = self::$peter->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_FORBIDDEN, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_FORBIDDEN, $response->getStatusCode());
         self::assertEquals(CannotUseThisCategoryInMovementException::class, $responseData['class']);
     }
 }

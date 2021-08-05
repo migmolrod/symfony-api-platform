@@ -3,7 +3,7 @@
 namespace App\Tests\Functional\User;
 
 use JsonException;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class RegisterActionTest extends UserTestBase
 {
@@ -30,7 +30,7 @@ class RegisterActionTest extends UserTestBase
         $response = self::$client->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_CREATED, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_CREATED, $response->getStatusCode());
         self::assertEquals($payload['email'], $responseData['email']);
     }
 
@@ -55,7 +55,7 @@ class RegisterActionTest extends UserTestBase
 
         $response = self::$client->getResponse();
 
-        self::assertEquals(JsonResponse::HTTP_BAD_REQUEST, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
     }
 
     /**
@@ -80,6 +80,6 @@ class RegisterActionTest extends UserTestBase
 
         $response = self::$client->getResponse();
 
-        self::assertEquals(JsonResponse::HTTP_BAD_REQUEST, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
     }
 }

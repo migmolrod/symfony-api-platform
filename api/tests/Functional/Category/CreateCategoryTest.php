@@ -11,7 +11,7 @@ use Doctrine\DBAL\Exception as DoctrineDbalException;
 use function json_encode;
 use JsonException;
 use function sprintf;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class CreateCategoryTest extends CategoryTestBase
 {
@@ -41,7 +41,7 @@ class CreateCategoryTest extends CategoryTestBase
         $response = self::$peter->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_CREATED, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_CREATED, $response->getStatusCode());
         self::assertEquals($payload['name'], $responseData['name']);
         self::assertEquals($payload['type'], $responseData['type']);
         self::assertEquals($payload['owner'], $responseData['owner']);
@@ -75,7 +75,7 @@ class CreateCategoryTest extends CategoryTestBase
         $response = self::$peter->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_CREATED, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_CREATED, $response->getStatusCode());
         self::assertEquals($payload['name'], $responseData['name']);
         self::assertEquals($payload['type'], $responseData['type']);
         self::assertEquals($payload['owner'], $responseData['owner']);
@@ -108,7 +108,7 @@ class CreateCategoryTest extends CategoryTestBase
         $response = self::$brian->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_FORBIDDEN, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_FORBIDDEN, $response->getStatusCode());
         self::assertEquals(CannotCreateCategoryForAnotherUserException::class, $responseData['class']);
     }
 
@@ -140,7 +140,7 @@ class CreateCategoryTest extends CategoryTestBase
         $response = self::$peter->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_FORBIDDEN, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_FORBIDDEN, $response->getStatusCode());
         self::assertEquals(CannotCreateCategoryForAnotherGroupException::class, $responseData['class']);
     }
 
@@ -170,7 +170,7 @@ class CreateCategoryTest extends CategoryTestBase
         $response = self::$peter->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_BAD_REQUEST, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_BAD_REQUEST, $response->getStatusCode());
         self::assertEquals(UnsupportedCategoryTypeException::class, $responseData['class']);
     }
 }

@@ -90,7 +90,7 @@ App\Entity\User:
                       type: string
     upload_avatar:
       method: POST
-      path: /users/{id}/avatar
+      path: /users/avatar
       controller: App\Api\Action\User\UploadAvatar
       deserialize: false
       openapi_context:

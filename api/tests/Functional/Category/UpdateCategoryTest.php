@@ -6,7 +6,7 @@ use Doctrine\DBAL\Driver\Exception as DoctrineDbalDriverException;
 use Doctrine\DBAL\Exception as DoctrineDbalException;
 use function json_encode;
 use JsonException;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class UpdateCategoryTest extends CategoryTestBase
 {
@@ -32,7 +32,7 @@ class UpdateCategoryTest extends CategoryTestBase
         $response = self::$peter->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
         self::assertEquals($peterExpenseCategoryId, $responseData['id']);
         self::assertEquals($payload['name'], $responseData['name']);
     }
@@ -59,7 +59,7 @@ class UpdateCategoryTest extends CategoryTestBase
         $response = self::$peter->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
         self::assertEquals($peterGroupExpenseCategoryId, $responseData['id']);
         self::assertEquals($payload['name'], $responseData['name']);
     }
@@ -85,7 +85,7 @@ class UpdateCategoryTest extends CategoryTestBase
 
         $response = self::$brian->getResponse();
 
-        self::assertEquals(JsonResponse::HTTP_FORBIDDEN, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_FORBIDDEN, $response->getStatusCode());
     }
 
     /**
@@ -109,6 +109,6 @@ class UpdateCategoryTest extends CategoryTestBase
 
         $response = self::$brian->getResponse();
 
-        self::assertEquals(JsonResponse::HTTP_FORBIDDEN, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_FORBIDDEN, $response->getStatusCode());
     }
 }

@@ -7,9 +7,9 @@ use App\Entity\User;
 use App\Exception\Movement\CannotCreateMovementForAnotherGroupException;
 use App\Exception\Movement\CannotCreateMovementForAnotherUserException;
 use App\Exception\Movement\CannotUseThisCategoryInMovementException;
+use function in_array;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use function in_array;
 
 class MovementPreWriteListener implements PreWriteListener
 {
