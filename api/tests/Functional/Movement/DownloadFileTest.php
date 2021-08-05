@@ -4,11 +4,11 @@ namespace App\Tests\Functional\Movement;
 
 use Doctrine\DBAL\Driver\Exception as DoctrineDbalDriverException;
 use Doctrine\DBAL\Exception as DoctrineDbalException;
+use function json_encode;
 use JsonException;
 use League\Flysystem\FilesystemException;
-use Symfony\Component\HttpFoundation\Response;
-use function json_encode;
 use function sprintf;
+use Symfony\Component\HttpFoundation\Response;
 
 class DownloadFileTest extends MovementTestBase
 {
