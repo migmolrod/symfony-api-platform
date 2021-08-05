@@ -2,6 +2,7 @@
 
 namespace App\Serializer;
 
+use App\Entity\Movement;
 use App\Entity\User;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
@@ -35,6 +36,11 @@ final class ApiNormalizer implements NormalizerInterface, DenormalizerInterface,
         // Generate full URI for avatar
         if (($object instanceof User) && null !== $avatar = $object->getAvatar()) {
             $data['avatar'] = $this->mediaPath.$avatar;
+        }
+
+        // Generate full URI for movement files
+        if (($object instanceof Movement) && null !== $file = $object->getFilePath()) {
+            $data['filePath'] = $this->mediaPath.$file;
         }
 
         return $data;
