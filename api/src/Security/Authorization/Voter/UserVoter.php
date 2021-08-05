@@ -18,6 +18,15 @@ class UserVoter extends Voter
         return in_array($attribute, $this->supportedAttributes(), true);
     }
 
+    private function supportedAttributes(): array
+    {
+        return [
+            self::USER_READ,
+            self::USER_UPDATE,
+            self::USER_DELETE,
+        ];
+    }
+
     /**
      * @param User|null $subject
      */
@@ -28,14 +37,5 @@ class UserVoter extends Voter
         }
 
         return false;
-    }
-
-    private function supportedAttributes(): array
-    {
-        return [
-            self::USER_READ,
-            self::USER_UPDATE,
-            self::USER_DELETE,
-        ];
     }
 }

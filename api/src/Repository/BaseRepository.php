@@ -15,9 +15,9 @@ use Doctrine\Persistence\ObjectRepository;
 
 abstract class BaseRepository
 {
-    private ManagerRegistry $managerRegistry;
     protected Connection $connection;
     protected ObjectRepository $objectRepository;
+    private ManagerRegistry $managerRegistry;
 
     public function __construct(ManagerRegistry $managerRegistry, Connection $connection)
     {

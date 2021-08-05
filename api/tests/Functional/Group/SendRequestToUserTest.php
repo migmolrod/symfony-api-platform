@@ -6,7 +6,7 @@ use Doctrine\DBAL\Driver\Exception as DoctrineDbalDriverException;
 use Doctrine\DBAL\Exception as DoctrineDbalException;
 use JsonException;
 use function sprintf;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class SendRequestToUserTest extends GroupTestBase
 {
@@ -34,7 +34,7 @@ class SendRequestToUserTest extends GroupTestBase
         $response = self::$peter->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
         self::assertEquals('The request has been sent.', $responseData['message']);
     }
 
@@ -62,7 +62,7 @@ class SendRequestToUserTest extends GroupTestBase
         $response = self::$brian->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_FORBIDDEN, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_FORBIDDEN, $response->getStatusCode());
         self::assertEquals('You are not the owner of this group.', $responseData['message']);
     }
 
@@ -90,7 +90,7 @@ class SendRequestToUserTest extends GroupTestBase
         $response = self::$peter->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_CONFLICT, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_CONFLICT, $response->getStatusCode());
         self::assertEquals('The user is already member of the group.', $responseData['message']);
     }
 }

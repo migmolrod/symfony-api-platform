@@ -56,8 +56,7 @@ class TestBase extends WebTestCase
         $token = $this
             ->getContainer()
             ->get(JWTTokenManagerInterface::class)
-            ->create($user)
-        ;
+            ->create($user);
         $client->setServerParameters([
             'HTTP_Authorization' => sprintf('Bearer %s', $token),
             'CONTENT_TYPE' => 'application/json',
@@ -73,11 +72,6 @@ class TestBase extends WebTestCase
         return json_decode($response->getContent(), true, 512, JSON_THROW_ON_ERROR);
     }
 
-    protected function initDbConnection(): Connection
-    {
-        return $this->getContainer()->get('doctrine')->getConnection();
-    }
-
     /**
      * @throws DoctrineDbalDriverException
      * @throws DoctrineDbalException
@@ -87,6 +81,11 @@ class TestBase extends WebTestCase
         return $this->initDbConnection()->executeQuery(
             "SELECT id FROM user WHERE email = 'peter@api.com'"
         )->fetchOne();
+    }
+
+    protected function initDbConnection(): Connection
+    {
+        return $this->getContainer()->get('doctrine')->getConnection();
     }
 
     /**
@@ -163,6 +162,138 @@ class TestBase extends WebTestCase
     {
         return $this->initDbConnection()->executeQuery(
             "SELECT id FROM user_group WHERE name = 'Brian Group'"
+        )->fetchOne();
+    }
+
+    /**
+     * @throws DoctrineDbalDriverException
+     * @throws DoctrineDbalException
+     */
+    protected function getPeterExpenseCategoryId()
+    {
+        return $this->initDbConnection()->executeQuery(
+            "SELECT id FROM category WHERE name = 'Peter Expense Category'"
+        )->fetchOne();
+    }
+
+    /**
+     * @throws DoctrineDbalDriverException
+     * @throws DoctrineDbalException
+     */
+    protected function getPeterIncomeCategoryId()
+    {
+        return $this->initDbConnection()->executeQuery(
+            "SELECT id FROM category WHERE name = 'Peter Income Category'"
+        )->fetchOne();
+    }
+
+    /**
+     * @throws DoctrineDbalDriverException
+     * @throws DoctrineDbalException
+     */
+    protected function getPeterGroupExpenseCategoryId()
+    {
+        return $this->initDbConnection()->executeQuery(
+            "SELECT id FROM category WHERE name = 'Peter Group Expense Category'"
+        )->fetchOne();
+    }
+
+    /**
+     * @throws DoctrineDbalDriverException
+     * @throws DoctrineDbalException
+     */
+    protected function getPeterGroupIncomeCategoryId()
+    {
+        return $this->initDbConnection()->executeQuery(
+            "SELECT id FROM category WHERE name = 'Peter Group Income Category'"
+        )->fetchOne();
+    }
+
+    /**
+     * @throws DoctrineDbalDriverException
+     * @throws DoctrineDbalException
+     */
+    protected function getBrianExpenseCategoryId()
+    {
+        return $this->initDbConnection()->executeQuery(
+            "SELECT id FROM category WHERE name = 'Brian Expense Category'"
+        )->fetchOne();
+    }
+
+    /**
+     * @throws DoctrineDbalDriverException
+     * @throws DoctrineDbalException
+     */
+    protected function getBrianIncomeCategoryId()
+    {
+        return $this->initDbConnection()->executeQuery(
+            "SELECT id FROM category WHERE name = 'Brian Income Category'"
+        )->fetchOne();
+    }
+
+    /**
+     * @throws DoctrineDbalDriverException
+     * @throws DoctrineDbalException
+     */
+    protected function getBrianGroupExpenseCategoryId()
+    {
+        return $this->initDbConnection()->executeQuery(
+            "SELECT id FROM category WHERE name = 'Brian Group Expense Category'"
+        )->fetchOne();
+    }
+
+    /**
+     * @throws DoctrineDbalDriverException
+     * @throws DoctrineDbalException
+     */
+    protected function getBrianGroupIncomeCategoryId()
+    {
+        return $this->initDbConnection()->executeQuery(
+            "SELECT id FROM category WHERE name = 'Brian Group Income Category'"
+        )->fetchOne();
+    }
+
+    /**
+     * @throws DoctrineDbalException
+     * @throws DoctrineDbalDriverException
+     */
+    protected function getPeterMovementId()
+    {
+        return $this->initDbConnection()->executeQuery(
+            'SELECT id FROM movement WHERE amount = 100'
+        )->fetchOne();
+    }
+
+    /**
+     * @throws DoctrineDbalException
+     * @throws DoctrineDbalDriverException
+     */
+    protected function getPeterGroupMovementId()
+    {
+        return $this->initDbConnection()->executeQuery(
+            'SELECT id FROM movement WHERE amount = 1000'
+        )->fetchOne();
+    }
+
+    /**
+     * @throws DoctrineDbalException
+     * @throws DoctrineDbalDriverException
+     */
+    protected function getBrianMovementId()
+    {
+        return $this->initDbConnection()->executeQuery(
+            'SELECT id FROM movement WHERE amount = 200'
+        )->fetchOne();
+    }
+
+    /**
+     * @throws DoctrineDbalException
+     * @throws DoctrineDbalDriverException
+     */
+    protected function getBrianGroupMovementId()
+    {
+        return $this->initDbConnection()->executeQuery(
+            'SELECT id FROM movement WHERE amount = 2000'
         )->fetchOne();
     }
 }

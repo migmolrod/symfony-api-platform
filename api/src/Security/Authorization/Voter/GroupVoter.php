@@ -19,6 +19,16 @@ class GroupVoter extends Voter
         return in_array($attribute, $this->supportedAttributes(), true);
     }
 
+    private function supportedAttributes(): array
+    {
+        return [
+            self::GROUP_CREATE,
+            self::GROUP_READ,
+            self::GROUP_UPDATE,
+            self::GROUP_DELETE,
+        ];
+    }
+
     /**
      * @param Group|null $subject
      */
@@ -32,15 +42,5 @@ class GroupVoter extends Voter
         }
 
         return false;
-    }
-
-    private function supportedAttributes(): array
-    {
-        return [
-            self::GROUP_CREATE,
-            self::GROUP_READ,
-            self::GROUP_UPDATE,
-            self::GROUP_DELETE,
-        ];
     }
 }

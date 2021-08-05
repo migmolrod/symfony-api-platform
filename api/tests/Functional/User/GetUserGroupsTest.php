@@ -5,7 +5,7 @@ namespace App\Tests\Functional\User;
 use Doctrine\DBAL\Driver\Exception as DoctrineDbalDriverException;
 use Doctrine\DBAL\Exception as DoctrineDbalException;
 use JsonException;
-use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 class GetUserGroupsTest extends UserTestBase
 {
@@ -26,7 +26,7 @@ class GetUserGroupsTest extends UserTestBase
         $response = self::$peter->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_OK, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_OK, $response->getStatusCode());
         self::assertCount(1, $responseData['hydra:member']);
     }
 
@@ -47,6 +47,6 @@ class GetUserGroupsTest extends UserTestBase
         $response = self::$brian->getResponse();
         $responseData = $this->getResponseData($response);
 
-        self::assertEquals(JsonResponse::HTTP_FORBIDDEN, $response->getStatusCode());
+        self::assertEquals(Response::HTTP_FORBIDDEN, $response->getStatusCode());
     }
 }

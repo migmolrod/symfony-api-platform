@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping">
     <entity name="App\Entity\GroupRequest" table="user_group_request">
-        <id name="id" type="string" length="36" />
+        <id name="id" type="string" length="36"/>
         <field name="token" type="string" length="128"/>
         <field name="status" type="string" length="16"/>
         <field name="acceptedAt" type="datetime" nullable="true"/>
