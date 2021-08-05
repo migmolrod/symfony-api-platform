@@ -1,0 +1,10 @@
+services:
+  api.filter.date_filter:
+    parent: 'api_platform.doctrine.orm.date_filter'
+    arguments:
+      -
+        createdAt: exclude_null
+        updatedAt: exclude_null
+    tags: [ 'api_platform.filter' ]
+    autowire: false
+    autoconfigure: false
