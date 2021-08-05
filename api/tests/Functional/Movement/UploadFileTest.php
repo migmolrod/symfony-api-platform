@@ -23,7 +23,7 @@ class UploadFileTest extends MovementTestBase
 
         self::$peter->request(
             'POST',
-            sprintf('%s/%s/file', $this->endpoint, $this->getPeterMovementId()),
+            sprintf('%s/%s/upload-file', $this->endpoint, $this->getPeterMovementId()),
             [],
             ['file' => $file]
         );
@@ -46,7 +46,7 @@ class UploadFileTest extends MovementTestBase
 
         self::$peter->request(
             'POST',
-            sprintf('%s/%s/file', $this->endpoint, $this->getPeterGroupMovementId()),
+            sprintf('%s/%s/upload-file', $this->endpoint, $this->getPeterGroupMovementId()),
             [],
             ['file' => $file]
         );
@@ -69,7 +69,7 @@ class UploadFileTest extends MovementTestBase
 
         self::$peter->request(
             'POST',
-            sprintf('%s/%s/file', $this->endpoint, $this->getBrianMovementId()),
+            sprintf('%s/%s/upload-file', $this->endpoint, $this->getBrianMovementId()),
             [],
             ['file' => $file]
         );
@@ -92,7 +92,7 @@ class UploadFileTest extends MovementTestBase
 
         self::$peter->request(
             'POST',
-            sprintf('%s/%s/file', $this->endpoint, $this->getBrianGroupMovementId()),
+            sprintf('%s/%s/upload-file', $this->endpoint, $this->getBrianGroupMovementId()),
             [],
             ['file' => $file]
         );
@@ -115,7 +115,7 @@ class UploadFileTest extends MovementTestBase
 
         self::$peter->request(
             'POST',
-            sprintf('%s/%s/file', $this->endpoint, $this->getPeterMovementId()),
+            sprintf('%s/%s/upload-file', $this->endpoint, $this->getPeterMovementId()),
             [],
             ['wrong' => $file]
         );

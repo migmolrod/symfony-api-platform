@@ -10,7 +10,7 @@ App\Entity\Movement:
         groups: [ movement_create ]
     upload_File:
       method: POST
-      path: /movements/{id}/file
+      path: /movements/{id}/upload-file
       controller: App\Api\Action\Movement\UploadFile
       deserialize: false
       openapi_context:
@@ -26,7 +26,7 @@ App\Entity\Movement:
                     format: binary
     download_File:
       method: POST
-      path: /movements/file
+      path: /movements/{id}/download-file
       controller: App\Api\Action\Movement\DownloadFile
       deserialize: false
       openapi_context:
