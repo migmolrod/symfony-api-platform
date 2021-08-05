@@ -10,6 +10,7 @@ services:
       $facebookSecret: '%env(resolve:FACEBOOK_SECRET)%'
       $facebookGraphVersion: '%env(resolve:FACEBOOK_GRAPH_VERSION)%'
 
+  # Default auto-discovering
   App\:
     resource: '../src/'
     exclude:
@@ -18,18 +19,22 @@ services:
       - '../src/Kernel.php'
       - '../src/Tests/'
 
+  # Actions
   App\Api\Action\:
     resource: '../src/Api/Action'
     tags: [ 'controller.service_arguments' ]
 
+  # Json responses transformer (for Exceptions)
   App\Api\Listener\JsonExceptionResponseTransformerListener:
     tags:
       - { name: kernel.event_listener, event: kernel.exception, method: onKernelException, priority: 100 }
 
+  # JWT listener
   App\Api\Listener\JWTCreatedListener:
     tags:
       - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_created, method: onJWTCreated }
 
+  # Digital Ocean (AWS S3) storage
   app.images.s3:
     class: Aws\S3\S3Client
     arguments:
@@ -40,7 +45,16 @@ services:
           key: '%env(resolve:CDN_KEY)%'
           secret: '%env(resolve:CDN_SECRET)%'
 
+  # Pre-write listeners
   _instanceof:
     App\Api\Listener\PreWriteListener\PreWriteListener:
       tags:
         - { name: kernel.event_listener, event: kernel.view, method: onKernelView, priority: 33 }
+
+  # API Platform filters
+  user.date_filter:
+    parent: 'api_platform.doctrine.orm.date_filter'
+    arguments: [ { createdAt: exclude_null } ]
+    tags: [ 'api_platform.filter' ]
+    autowire: false
+    autoconfigure: false
